@@ -29,6 +29,14 @@ namespace Dev.ComradeVanti.GGJ24
         public GameObject Prefab { get; }
     }
 
+    /// <summary>
+    /// A person that is visiting an act. Has opinions about what they like.
+    /// </summary>
+    public interface IPerson
+    {
+        
+    }
+    
     public interface IPhaseKeeper
     {
         public record PhaseChangedArgs(PlayerPhase NewPhase);
