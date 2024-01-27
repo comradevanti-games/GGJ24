@@ -91,6 +91,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Complete",
+                    "type": "Button",
+                    "id": "81677376-22dd-4593-aed1-3c8e81a11a7c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select",
                     "type": "Button",
                     "id": "da0e280b-5003-484c-860b-d0a52a77eddd",
@@ -144,6 +153,17 @@
                     "action": "Choose",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "9f0c4bd8-943c-41c2-a609-d1c5f262291e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Complete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
