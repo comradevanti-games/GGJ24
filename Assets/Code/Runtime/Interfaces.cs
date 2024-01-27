@@ -36,7 +36,14 @@ namespace Dev.ComradeVanti.GGJ24
     {
         
     }
-    
+
+    /// <summary>
+    /// The people that are visiting the act.
+    /// </summary>
+    public interface ICrowd
+    {
+    }
+
     public interface IPhaseKeeper
     {
         public record PhaseChangedArgs(PlayerPhase NewPhase);
