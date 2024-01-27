@@ -100,6 +100,9 @@ namespace Dev.ComradeVanti.GGJ24
         /// the slot index is out of bounds.
         /// </summary>
         public Vector3? TryGetPositionForSlot(int slotIndex);
+
+        public int? TryGetSlotFor(float x);
+
     }
 
     /// <summary>

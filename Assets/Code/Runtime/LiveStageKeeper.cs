@@ -26,6 +26,16 @@ namespace Dev.ComradeVanti.GGJ24
         public Vector3? TryGetPositionForSlot(int slotIndex) =>
             firstSlotTransform.position + stageDirection * UnitsPerSlot;
 
+        public int? TryGetSlotFor(float x)
+        {
+            var diff = firstSlotTransform.position.x - x;
+            if (diff < 0) return null;
+
+            var slot = Mathf.FloorToInt(diff / UnitsPerSlot);
+            if (slot >= Stage.SlotsPerStage) return null;
+
+            return slot;
+        }
 
         private void ClearSlot(int slotIndex)
         {
