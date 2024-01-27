@@ -109,8 +109,13 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 		}
 
 		private void OnPropSelectionInputPerformed() {
-			IInventoryKeeper inventoryKeeper = Singletons.Require<IInventoryKeeper>();
-			inventoryKeeper.ModifyStoredInventory(inventory => Inventory.Add(inventory, AllProps[HoveredPropID]));
+			var inventoryKeeper = Singletons.Require<IInventoryKeeper>();
+			inventoryKeeper.ModifyStoredInventory(inventory =>
+			{
+				var prop = AllProps[HoveredPropID];
+				var without = Inventory.Remove(inventory, prop);
+				return Inventory.Add(without, prop);
+			});
 		}
 
 #endregion
