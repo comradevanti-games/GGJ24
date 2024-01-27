@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Immutable;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ namespace Dev.ComradeVanti.GGJ24
         /// The state of the stage that is the default for this act.
         /// </summary>
         public Stage InitialStage { get; }
+
+        /// <summary>
+        /// The crowd for this act.
+        /// </summary>
+        public ICrowd Crowd { get; }
     }
 
     /// <summary>
@@ -27,6 +33,28 @@ namespace Dev.ComradeVanti.GGJ24
         /// The props prefab.
         /// </summary>
         public GameObject Prefab { get; }
+    }
+
+    /// <summary>
+    /// A person that is visiting an act. Has opinions about what they like.
+    /// </summary>
+    public interface IPerson
+    {
+        /// <summary>
+        /// Information about what type of humor this person likes.
+        /// </summary>
+        public HumorPreferences Preferences { get; }
+    }
+
+    /// <summary>
+    /// Contains information about a crowd of people.
+    /// </summary>
+    public interface ICrowd
+    {
+        /// <summary>
+        /// The people that are visiting the act.
+        /// </summary>
+        public ImmutableArray<IPerson> People { get; }
     }
 
     public interface IPhaseKeeper
@@ -81,5 +109,25 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public event Action<ActChangedArgs>? ActChanged;
+    }
+
+    /// <summary>
+    /// Contains functions for querying and interacting with the crowd.
+    /// </summary>
+    public interface ILiveCrowdKeeper
+    {
+    }
+
+    /// <summary>
+    /// Contains functions for spawning people
+    /// </summary>
+    public interface IPersonSpawner
+    {
+        /// <summary>
+        /// Spawns a person at a specific position. The person will
+        /// have a random appearance. This does not initialize the person
+        /// in any other way.
+        /// </summary>
+        public GameObject SpawnPerson(Vector3 position);
     }
 }

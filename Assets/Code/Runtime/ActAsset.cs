@@ -14,10 +14,14 @@ namespace Dev.ComradeVanti.GGJ24
         [SerializeField] private PropAsset?[] initialProps =
             new PropAsset?[Stage.SlotsPerStage];
 
+        [SerializeField] private Crowd crowd = null!;
+
 
         private IEnumerable<IProp?> InitialProps => initialProps;
 
         public Stage InitialStage => new Stage(InitialProps.ToImmutableArray());
+
+        public ICrowd Crowd => crowd;
 
 
         private void OnValidate()

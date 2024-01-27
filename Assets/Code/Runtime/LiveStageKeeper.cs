@@ -20,7 +20,7 @@ namespace Dev.ComradeVanti.GGJ24
         private readonly Vector3 stageDirection = Vector3.right;
 
 
-        [SerializeField] private Transform firstSlotTransform;
+        [SerializeField] private Transform firstSlotTransform = null!;
 
         private IPropBuilder propBuilder = null!;
         private GameObject?[] liveProps = new GameObject?[Stage.SlotsPerStage];

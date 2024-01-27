@@ -1,9 +1,18 @@
-﻿namespace Dev.ComradeVanti.GGJ24
+﻿#nullable enable
+
+using System;
+using UnityEngine;
+
+namespace Dev.ComradeVanti.GGJ24
 {
-    /// <summary>
-    /// A person that is visiting an act. Has opinions about what they like.
-    /// </summary>
-    public class Person
+    [Serializable]
+    public class Person : IPerson
     {
+
+        [SerializeField] private HumorPreferences preferences = null!;
+
+
+        public HumorPreferences Preferences => preferences;
+
     }
 }
