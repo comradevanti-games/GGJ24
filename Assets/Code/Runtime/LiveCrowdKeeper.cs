@@ -2,7 +2,7 @@
 
 namespace Dev.ComradeVanti.GGJ24
 {
-    public class LiveCrowdKeeper : MonoBehaviour
+    public class LiveCrowdKeeper : MonoBehaviour, ILiveCrowdKeeper
     {
     }
 }
