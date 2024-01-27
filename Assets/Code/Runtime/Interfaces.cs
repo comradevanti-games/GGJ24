@@ -12,6 +12,10 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IAct
     {
+        /// <summary>
+        /// The state of the stage that is the default for this act.
+        /// </summary>
+        public Stage InitialStage { get; }
     }
 
     /// <summary>
