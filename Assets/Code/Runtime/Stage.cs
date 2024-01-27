@@ -16,7 +16,7 @@ namespace Dev.ComradeVanti.GGJ24
         /// <summary>
         /// The fixed amount of slots per stage.
         /// </summary>
-        public const int SlotsPerStage = 20;
+        public const int SlotsPerStage = 15;
 
 
         public static readonly Stage Empty = new Stage(
