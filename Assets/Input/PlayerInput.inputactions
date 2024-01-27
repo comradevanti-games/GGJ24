@@ -91,6 +91,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "00017b41-ae90-4d3a-8270-10d7be7afbac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Complete",
                     "type": "Button",
                     "id": "81677376-22dd-4593-aed1-3c8e81a11a7c",
@@ -162,6 +171,17 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Complete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "163676e1-f5a5-4ab7-912b-f042445460d9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
