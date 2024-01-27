@@ -1,4 +1,5 @@
 ﻿using System;
+using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
@@ -16,7 +17,7 @@ namespace Dev.ComradeVanti.GGJ24
 
     public interface IPhaseKeeper
     {
-        public record PhaseChangedArgs();
+        public record PhaseChangedArgs(PlayerPhase NewPhase);
 
 
         public event Action<PhaseChangedArgs> PhaseChanged;
