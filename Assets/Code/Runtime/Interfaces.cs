@@ -146,5 +146,15 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IInventoryKeeper
     {
+        public record InventoryChangedArgs(Inventory Inventory);
+
+
+        public event Action<InventoryChangedArgs>? InventoryChanged;
+
+        /// <param name="updateF">An update functions. This function
+        /// is provided the current state of the inventory as a parameter.
+        /// The inventory that is returned from this function will
+        /// be used as the new state.</param>
+        public void ModifyInventory(Func<Inventory, Inventory> updateF);
     }
 }
