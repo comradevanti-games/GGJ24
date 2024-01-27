@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,14 +13,34 @@ namespace Dev.ComradeVanti.GGJ24.UI {
 
 #endregion
 
+#region Fields
+
+		[SerializeField] private Canvas menuCanvas;
+		[SerializeField] private CanvasGroup menuCanvasGroup;
+
+#endregion
+
 #region Methods
+
+		private void Awake() {
+			menuCanvas.worldCamera = Camera.main;
+		}
 
 		public void OnPlayButtonPressed() {
 			playButtonPressed?.Invoke();
+			HideCanvas();
 		}
 
 		public void OnTutorialButtonPressed() {
 			tutorialButtonPressed?.Invoke();
+		}
+
+		private void HideCanvas() {
+			menuCanvasGroup.alpha = 0;
+		}
+
+		private void ShowCanvas() {
+			menuCanvasGroup.alpha = 1;
 		}
 
 		public void OnQuitButtonPressed() {

@@ -7,8 +7,17 @@
             "actions": [
                 {
                     "name": "Choose",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "af8f341a-b94b-4b80-a4ec-c638eecae206",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "52c1b8e5-99fe-4ec2-8e81-74832b60b9c4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -17,9 +26,20 @@
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
-                    "id": "3d2d72e6-624e-4256-bdd4-e5ae9f8c1329",
-                    "path": "1DAxis",
+                    "name": "",
+                    "id": "ce780b69-30fc-466e-91ce-0c7d323e8c85",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "3a81ad5d-6d0d-4383-ae94-ea38c90f689a",
+                    "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -28,8 +48,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "positive",
-                    "id": "d3589f8e-0a01-4758-9de3-a93f1c4a7678",
+                    "name": "up",
+                    "id": "beb827d4-4275-4404-b727-ff904f97f469",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -39,8 +59,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "negative",
-                    "id": "4d91b1aa-2cd4-4137-99a8-a829a1479be3",
+                    "name": "down",
+                    "id": "eef531a3-e93c-4bb9-98ab-71e98341d9a7",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
