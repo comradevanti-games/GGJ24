@@ -20,10 +20,18 @@ namespace Dev.ComradeVanti.GGJ24.UI {
 
 #endregion
 
+#region Properties
+
+		private InputHandler InputHandler { get; set; }
+
+#endregion
+
 #region Methods
 
 		private void Awake() {
 			menuCanvas.worldCamera = Camera.main;
+			InputHandler = FindAnyObjectByType<InputHandler>();
+			InputHandler.PauseInputPerformed += ShowCanvas;
 		}
 
 		public void OnPlayButtonPressed() {

@@ -139,20 +139,84 @@ MonoBehaviour:
     m_ActionId: dea19c63-bff0-4678-b788-ac3bb9139e80
     m_ActionName: Player/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnInteractionInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: a9fd405f-bc7c-4a7b-8717-9c5bbb3643e5
     m_ActionName: 'Setup/Interact[/Keyboard/space]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnCompleteSetupInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 1af0f2b0-0c6d-4ab9-8c06-f447d6f2d954
     m_ActionName: 'Setup/Complete[/Keyboard/enter]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 5094a7d4-eea8-4bad-8ae1-3951a403f8c2
     m_ActionName: 'Performance/Start[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af8f341a-b94b-4b80-a4ec-c638eecae206
+    m_ActionName: 'Menu/Choose[/Keyboard/w,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 52c1b8e5-99fe-4ec2-8e81-74832b60b9c4
+    m_ActionName: 'Menu/Select[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPauseInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e4abbed0-24a0-46b9-ae9e-4c42817b286e
+    m_ActionName: 'Setup/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPauseInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 93fa9445-ec27-4005-bd03-cac8b5400b6c
+    m_ActionName: 'Performance/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: Setup
+  m_DefaultActionMap: Menu
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!143 &2877151032138499921
