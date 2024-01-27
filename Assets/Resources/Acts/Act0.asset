@@ -12,3 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89d70f3b92f4ce1b259c552e715d19d, type: 3}
   m_Name: Act0
   m_EditorClassIdentifier: 
+  initialProps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 11400000, guid: 8c3529e294d18004398d184e0f918693, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
