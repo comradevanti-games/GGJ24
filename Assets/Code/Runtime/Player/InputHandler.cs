@@ -1,4 +1,5 @@
-using System;
+#nullable enable
+
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,20 +10,20 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 #region Fields
 
-		[SerializeField] private PlayerInput playerInput;
+		[SerializeField] private PlayerInput playerInput = null!;
 
 #endregion
 
 #region Properties
 
-		private IPhaseKeeper PhaseKeeper { get; set; }
+		private IPhaseKeeper PhaseKeeper { get; set; } = null!;
 
 #endregion
 
 #region Methods
 
 		private void Awake() {
-			PhaseKeeper = Singletons.TryFind<IPhaseKeeper>();
+			PhaseKeeper = Singletons.Require<IPhaseKeeper>();
 			PhaseKeeper.PhaseChanged += OnPhaseChanged;
 		}
 
