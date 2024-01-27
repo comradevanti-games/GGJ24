@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using UnityEditor;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24

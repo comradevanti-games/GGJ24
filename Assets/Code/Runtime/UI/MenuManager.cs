@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -53,7 +54,7 @@ namespace Dev.ComradeVanti.GGJ24.UI {
 
 		public void OnQuitButtonPressed() {
 #if UNITY_EDITOR
-			UnityEditor.EditorApplication.isPlaying = false;
+			EditorApplication.isPlaying = false;
 #else
 			Application.Quit();
 #endif
