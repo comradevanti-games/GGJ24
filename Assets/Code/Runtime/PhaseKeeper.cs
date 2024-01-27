@@ -11,15 +11,25 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IPhaseKeeper.PhaseChangedArgs>? PhaseChanged;
 
 
-        private void EnterPropSelection()
+        private PlayerPhase currentPhase = PlayerPhase.Idle;
+
+
+        private bool CanDoSwitch(PlayerPhase from, PlayerPhase to)
         {
-            PhaseChanged?.Invoke(
-                new IPhaseKeeper.PhaseChangedArgs(PlayerPhase.PropSelection));
+            return true;
+        }
+
+        public void TrySwitchPhase(PlayerPhase nextPhase)
+        {
+            if (!CanDoSwitch(currentPhase, nextPhase)) return;
+
+            currentPhase = nextPhase;
+            PhaseChanged?.Invoke(new IPhaseKeeper.PhaseChangedArgs(currentPhase));
         }
 
         private void OnActChanged(IActKeeper.ActChangedArgs _)
         {
-            EnterPropSelection();
+            TrySwitchPhase(PlayerPhase.PropSelection);
         }
 
         private void Awake()
