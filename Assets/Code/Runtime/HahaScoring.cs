@@ -6,29 +6,22 @@ namespace Dev.ComradeVanti.GGJ24
 {
     public static class HahaScoring
     {
-        private static HahaScore HahaScoreFromHahaValue(float hahaValue) =>
+        public static HahaScore HahaScoreFromHahaValue(float hahaValue) =>
             hahaValue switch
             {
-                > 10 => HahaScore.S,
-                > 8 => HahaScore.A,
-                > 6 => HahaScore.B,
-                > 4 => HahaScore.C,
-                > 2 => HahaScore.D,
-                > 0 => HahaScore.E,
+                > 100 => HahaScore.S,
+                > 90 => HahaScore.A,
+                > 80 => HahaScore.B,
+                > 70 => HahaScore.C,
+                > 60 => HahaScore.D,
+                > 50 => HahaScore.E,
                 _ => HahaScore.F
             };
 
-        public static HahaScore HahaScoreForPerson(IPerson person, HumorEffect effect)
+        public static float HahaValueForPerson(IPerson person, HumorEffect effect)
         {
             var multiplier = person.Preferences[effect.Type];
-            var hahaValue = multiplier * effect.Strength;
-            return HahaScoreFromHahaValue(hahaValue);
-        }
-
-        public static HahaScore AverageHahaScores(IEnumerable<HahaScore> scores)
-        {
-            var average = (float) scores.Cast<int>().Average();
-            return (HahaScore) Mathf.FloorToInt(average);
+            return multiplier * effect.Strength;
         }
     }
 }
