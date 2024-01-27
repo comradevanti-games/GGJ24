@@ -59,4 +59,15 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public GameObject BuildProp(IProp prop, int slotIndex);
     }
+
+    /// <summary>
+    /// Keeps information about what act the player is on.
+    /// </summary>
+    public interface IActKeeper
+    {
+        public record ActChangedArgs(Act Act);
+
+
+        public event Action<ActChangedArgs>? ActChanged;
+    }
 }
