@@ -4,7 +4,7 @@ namespace Dev.ComradeVanti.GGJ24
 {
     public record HumorEffect(
         HumorTypes Type,
-        HahaScore Score);
+        float Strength);
 
     public record PropInteraction(
         PlayerState NewPlayerState,
