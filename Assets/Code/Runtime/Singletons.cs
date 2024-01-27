@@ -22,7 +22,7 @@ namespace Dev.ComradeVanti.GGJ24
         /// <summary>
         /// Attempts to find a singleton of a specific type. Null if not found.
         /// </summary>
-        public static T? TryFind<T>() where T : MonoBehaviour =>
+        public static T? TryFind<T>() =>
             TryGetSingletonHost().GetComponent<T>();
 
         /// <summary>
@@ -31,10 +31,11 @@ namespace Dev.ComradeVanti.GGJ24
         /// <exception cref="NullReferenceException">
         /// Thrown if singleton is not found.
         /// </exception>
-        public static T Require<T>() where T : MonoBehaviour
+        public static T Require<T>()
         {
             var singleton = TryFind<T>();
-            if (!singleton) throw new NullReferenceException($"Singleton of type {typeof(T).Name} was required but not found.");
+            if (singleton == null)
+                throw new NullReferenceException($"Singleton of type {typeof(T).Name} was required but not found.");
             return singleton!;
         }
     }
