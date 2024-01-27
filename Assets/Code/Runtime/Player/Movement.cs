@@ -37,7 +37,7 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 
 #region Methods
 
-		public void Update() {
+		public void FixedUpdate() {
 
 			if (IsMoving) {
 				charController.Move(MovementDirection * (movementSpeed * Time.fixedDeltaTime));
