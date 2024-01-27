@@ -8,10 +8,10 @@ namespace Dev.ComradeVanti.GGJ24
     /// <summary>
     /// Includes information about the currently placed props.
     /// </summary>
-    /// <param name="PlacedProps">The props placed on this stage. The
+    /// <param name="Props">The props placed on this stage. The
     /// length of this array should always be <see cref="SlotsPerStage"/>.
     /// </param>
-    public record Stage(ImmutableArray<PlacedProp?> PlacedProps)
+    public record Stage(ImmutableArray<IProp?> Props)
     {
         /// <summary>
         /// The fixed amount of slots per stage.
@@ -20,7 +20,7 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public static readonly Stage Empty = new Stage(
-            new PlacedProp?[SlotsPerStage].ToImmutableArray());
+            new IProp?[SlotsPerStage].ToImmutableArray());
 
 
         private static bool IsValidSlotIndex(int slotIndex) =>
@@ -30,10 +30,9 @@ namespace Dev.ComradeVanti.GGJ24
         {
             if (!IsValidSlotIndex(slotIndex)) return null;
 
-            var placedProp = new PlacedProp(prop);
             return stage with
             {
-                PlacedProps = stage.PlacedProps.SetItem(slotIndex, placedProp)
+                Props = stage.Props.SetItem(slotIndex, prop)
             };
         }
 
@@ -43,20 +42,20 @@ namespace Dev.ComradeVanti.GGJ24
 
             return stage with
             {
-                PlacedProps = stage.PlacedProps.SetItem(slotIndex, null)
+                Props = stage.Props.SetItem(slotIndex, null)
             };
         }
 
-        public static Stage? TryUpdateProp(Stage stage, int slotIndex, Func<PlacedProp, PlacedProp> updateF)
+        public static Stage? TryUpdateProp(Stage stage, int slotIndex, Func<IProp, IProp> updateF)
         {
             if (!IsValidSlotIndex(slotIndex)) return null;
 
-            var prop = stage.PlacedProps[slotIndex];
+            var prop = stage.Props[slotIndex];
             if (prop == null) return stage;
 
             return stage with
             {
-                PlacedProps = stage.PlacedProps.SetItem(slotIndex, updateF(prop))
+                Props = stage.Props.SetItem(slotIndex, updateF(prop))
             };
         }
     }
