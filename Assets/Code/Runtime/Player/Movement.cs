@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +33,8 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 				MovementStateChanged?.Invoke(IsMoving);
 			}
 		}
+
+		public bool IsAutomated { get; set; }
 
 #endregion
 
@@ -73,14 +74,21 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 
 		}
 
+		public void To(Vector3 targetPoint) {
+			StartCoroutine(MoveCharacterTo(targetPoint));
+		}
+
 		private IEnumerator MoveCharacterTo(Vector3 targetPoint) {
+
+			IsAutomated = true;
 
 			while (Vector3.Distance(targetPoint, transform.position) > 0.5f) {
 				Vector3 dir = (targetPoint - transform.position).normalized;
 				charController.Move(dir * (movementSpeed * Time.fixedDeltaTime));
-				yield return null;
+				yield return new WaitForFixedUpdate();
 			}
 
+			IsAutomated = false;
 		}
 
 #endregion
