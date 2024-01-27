@@ -168,4 +168,9 @@ namespace Dev.ComradeVanti.GGJ24
         /// be used as the new state.</param>
         public void ModifyStoredInventory(Func<Inventory, Inventory> updateF);
     }
+
+    public interface IPropInteractable
+    {
+        public PropInteraction? TryInteraction(PlayerState playerState);
+    }
 }
