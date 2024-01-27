@@ -41,10 +41,14 @@ namespace Dev.ComradeVanti.GGJ24
     }
 
     /// <summary>
-    /// The people that are visiting the act.
+    /// Contains information about a crowd of people.
     /// </summary>
     public interface ICrowd
     {
+        /// <summary>
+        /// The people that are visiting the act.
+        /// </summary>
+        public ImmutableArray<IPerson> People { get; }
     }
 
     public interface IPhaseKeeper
