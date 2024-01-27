@@ -10,9 +10,12 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IInventoryKeeper.InventoryChangedArgs>? InventoryChanged;
 
 
+        public Inventory Inventory { get; private set; } = Inventory.Empty;
+
+
         public void ModifyInventory(Func<Inventory, Inventory> updateF)
         {
-            throw new NotImplementedException();
+            Inventory = updateF(Inventory);
         }
     }
 }

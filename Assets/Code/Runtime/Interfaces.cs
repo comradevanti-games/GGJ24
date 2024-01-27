@@ -151,6 +151,10 @@ namespace Dev.ComradeVanti.GGJ24
 
         public event Action<InventoryChangedArgs>? InventoryChanged;
 
+
+        public Inventory Inventory { get; }
+
+
         /// <param name="updateF">An update functions. This function
         /// is provided the current state of the inventory as a parameter.
         /// The inventory that is returned from this function will
