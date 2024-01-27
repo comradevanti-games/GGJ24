@@ -32,6 +32,7 @@ MonoBehaviour:
     m_Url: https://package.openupm.com
     m_Scopes:
     - com.openupm
+    - dev.comradevanti.enum-dict
     - org.nuget.system.buffers
     - org.nuget.system.collections.immutable
     - org.nuget.system.memory
