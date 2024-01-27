@@ -7,6 +7,14 @@ using UnityEngine;
 namespace Dev.ComradeVanti.GGJ24
 {
     /// <summary>
+    /// Synonymous to "level". Contains information about the props and the
+    /// crowd.
+    /// </summary>
+    public interface IAct
+    {
+    }
+
+    /// <summary>
     /// Contains data about a prop.
     /// </summary>
     public interface IProp
@@ -65,7 +73,7 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IActKeeper
     {
-        public record ActChangedArgs(Act Act);
+        public record ActChangedArgs(IAct Act);
 
 
         public event Action<ActChangedArgs>? ActChanged;
