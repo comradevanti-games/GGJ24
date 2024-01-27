@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4067831293748333794}
   - component: {fileID: 2882318615294851935}
   - component: {fileID: -3023338231161226134}
+  - component: {fileID: 2919476512655398312}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Singletons
@@ -55,5 +56,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4b4cddb25914a53a224186a35e7dcef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstSlotTransform: {fileID: 0}
+--- !u!114 &2919476512655398312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5342117897683017727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcd05636ff34b8aa75c8eb529961ecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
