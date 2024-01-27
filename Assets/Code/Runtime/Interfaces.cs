@@ -38,7 +38,7 @@ namespace Dev.ComradeVanti.GGJ24
         /// Thumbnail for displaying the prop in the UI.
         /// </summary>
         public Sprite? Thumbnail { get; }
-        
+
         /// <summary>
         /// Description of the prop. This may be multiline text.
         /// </summary>
@@ -139,5 +139,12 @@ namespace Dev.ComradeVanti.GGJ24
         /// in any other way.
         /// </summary>
         public GameObject SpawnPerson(Vector3 position);
+    }
+
+    /// <summary>
+    /// Keeps track of the current player inventory.
+    /// </summary>
+    public interface IInventoryKeeper
+    {
     }
 }
