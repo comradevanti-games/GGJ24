@@ -3,7 +3,6 @@
     /// <summary>
     /// Contains information about what props the player brings into the act.
     /// </summary>
-    public class Inventory
-    {
-    }
+    public record Inventory();
+    
 }
