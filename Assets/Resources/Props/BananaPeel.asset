@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3780806726267151928, guid: 4dea9058d86e8544fb74f65cf0463e05, type: 3}
   thumbnail: {fileID: 0}
+  description: It's a banana peel. You know what it does.
