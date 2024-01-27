@@ -34,7 +34,10 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IPerson
     {
-        
+        /// <summary>
+        /// Information about what type of humor this person likes.
+        /// </summary>
+        public HumorPreferences Preferences { get; }
     }
 
     /// <summary>
