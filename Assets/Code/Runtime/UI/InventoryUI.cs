@@ -1,50 +1,51 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+#nullable enable
+
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace Dev.ComradeVanti.GGJ24 {
+namespace Dev.ComradeVanti.GGJ24
+{
+    public class InventoryUI : MonoBehaviour
+    {
+        #region Fields
 
-	public class InventoryUI : MonoBehaviour {
+        [SerializeField] private GameObject propUIPrefab = null!;
+        [SerializeField] private Transform parentTransform = null!;
 
-#region Fields
+        #endregion
 
-		[SerializeField] private GameObject[] inventorySlots;
 
-#endregion
+        #region Methods
 
-#region Properties
+        private void Clear()
+        {
+            for (var i = 0; i < parentTransform.childCount; i++)
+            {
+                var child = parentTransform.GetChild(i);
+                Destroy(child.gameObject);
+            }
+        }
 
-		private IInventoryKeeper InventoryKeeper { get; set; }
+        private void AddPropDisplay(IProp prop)
+        {
+            var display = Instantiate(propUIPrefab, parentTransform);
+            display.GetComponent<Image>().sprite = prop.Thumbnail;
+        }
 
-#endregion
+        private void Display(Inventory inventory)
+        {
+            Clear();
+            foreach (var prop in inventory.Props)
+                AddPropDisplay(prop);
+        }
 
-#region Methods
 
-		private void Awake() {
-			InventoryKeeper = Singletons.Require<IInventoryKeeper>();
-			InventoryKeeper.StoredInventoryChanged += OnInventoryChanged;
-		}
+        private void Awake()
+        {
+            Singletons.Require<IInventoryKeeper>()
+                      .LiveInventoryChanged += args => Display(args.Inventory);
+        }
 
-		private void OnInventoryChanged(IInventoryKeeper.InventoryChangedArgs e) {
-			UpdateAvailableItems(e.Inventory.Props.ToList());
-		}
-
-		private void UpdateAvailableItems(List<IProp> inventoryProps) {
-
-			for (int i = 0; i <= inventoryProps.Count; i++) {
-
-				PropUI inventoryProp = inventorySlots[i].GetComponent<PropUI>();
-				inventoryProp.PropData = inventoryProps[i];
-				inventoryProp.PropSpriteRenderer.sprite = inventoryProps[i].Thumbnail;
-
-			}
-
-		}
-
-#endregion
-
-	}
-
+        #endregion
+    }
 }
