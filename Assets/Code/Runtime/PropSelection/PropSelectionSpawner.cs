@@ -104,7 +104,8 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 		}
 
 		private void OnPropSelectionInputPerformed() {
-			Debug.Log("Props Selection Confirmed");
+			IInventoryKeeper inventoryKeeper = Singletons.Require<IInventoryKeeper>();
+			inventoryKeeper.ModifyStoredInventory(inventory => Inventory.Add(inventory, AllProps[HoveredPropID]));
 		}
 
 #endregion
