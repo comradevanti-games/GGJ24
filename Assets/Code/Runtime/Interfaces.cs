@@ -33,6 +33,16 @@ namespace Dev.ComradeVanti.GGJ24
         /// The props prefab.
         /// </summary>
         public GameObject Prefab { get; }
+
+        /// <summary>
+        /// Thumbnail for displaying the prop in the UI.
+        /// </summary>
+        public Sprite? Thumbnail { get; }
+        
+        /// <summary>
+        /// Description of the prop. This may be multiline text.
+        /// </summary>
+        public string Description { get; }
     }
 
     /// <summary>

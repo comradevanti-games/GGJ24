@@ -11,15 +11,15 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IPhaseKeeper.PhaseChangedArgs>? PhaseChanged;
 
 
-        private void EnterSetupMode()
+        private void EnterPropSelection()
         {
             PhaseChanged?.Invoke(
-                new IPhaseKeeper.PhaseChangedArgs(PlayerPhase.Setup));
+                new IPhaseKeeper.PhaseChangedArgs(PlayerPhase.PropSelection));
         }
 
         private void OnActChanged(IActKeeper.ActChangedArgs _)
         {
-            EnterSetupMode();
+            EnterPropSelection();
         }
 
         private void Awake()
