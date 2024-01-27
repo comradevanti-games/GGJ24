@@ -7,5 +7,9 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public class PropAsset : ScriptableObject, IProp
     {
+        [SerializeField] private GameObject prefab;
+
+
+        public GameObject Prefab => prefab;
     }
 }

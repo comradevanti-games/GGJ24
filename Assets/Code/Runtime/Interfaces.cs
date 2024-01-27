@@ -8,6 +8,10 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IProp
     {
+        /// <summary>
+        /// The props prefab.
+        /// </summary>
+        public GameObject Prefab { get; }
     }
 
     public interface IPhaseKeeper
@@ -38,10 +42,15 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface ILiveStageKeeper
     {
+        /// <summary>
+        /// Attempts to find the world position of a slot index. Null if
+        /// the slot index is out of bounds.
+        /// </summary>
+        public Vector3? TryGetPositionForSlot(int slotIndex);
     }
 
     /// <summary>
-    /// Responsible for instantiating props.
+    /// Responsible for instantiating props. This is a singleton.
     /// </summary>
     public interface IPropBuilder
     {
