@@ -13,6 +13,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 		public event Action<InteractionInputEventArgs> SetupInteractionInputPerformed;
 		public event Action SetupCompleteInputPerformed;
+		public event Action PerformanceStartInputPerformed;
 
 #endregion
 
@@ -69,6 +70,14 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 			if (ctx.canceled) {
 				SetupCompleteInputPerformed?.Invoke();
+			}
+
+		}
+
+		public void OnPerformanceStartInputReceived(InputAction.CallbackContext ctx) {
+
+			if (ctx.canceled) {
+				PerformanceStartInputPerformed?.Invoke();
 			}
 
 		}

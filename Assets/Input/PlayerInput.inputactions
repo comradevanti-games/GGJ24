@@ -4,8 +4,52 @@
         {
             "name": "Menu",
             "id": "b44abf7d-c2a9-4a99-b858-80ceb299ff3d",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Choose",
+                    "type": "Button",
+                    "id": "af8f341a-b94b-4b80-a4ec-c638eecae206",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "3d2d72e6-624e-4256-bdd4-e5ae9f8c1329",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Choose",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "positive",
+                    "id": "d3589f8e-0a01-4758-9de3-a93f1c4a7678",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Choose",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "negative",
+                    "id": "4d91b1aa-2cd4-4137-99a8-a829a1479be3",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Choose",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         },
         {
             "name": "Idle",
