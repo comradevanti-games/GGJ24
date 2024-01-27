@@ -142,23 +142,25 @@ namespace Dev.ComradeVanti.GGJ24
     }
 
     /// <summary>
-    /// Keeps track of the current player inventory.
+    /// Keeps track of the current stored inventory.
+    /// The stored inventory is the inventory that the player assembles
+    /// during the <see cref="PlayerPhase.PropSelection"/> phase.
     /// </summary>
     public interface IInventoryKeeper
     {
         public record InventoryChangedArgs(Inventory Inventory);
 
 
-        public event Action<InventoryChangedArgs>? InventoryChanged;
+        public event Action<InventoryChangedArgs>? StoredInventoryChanged;
 
 
-        public Inventory Inventory { get; }
+        public Inventory StoredInventory { get; }
 
 
         /// <param name="updateF">An update functions. This function
         /// is provided the current state of the inventory as a parameter.
         /// The inventory that is returned from this function will
         /// be used as the new state.</param>
-        public void ModifyInventory(Func<Inventory, Inventory> updateF);
+        public void ModifyStoredInventory(Func<Inventory, Inventory> updateF);
     }
 }

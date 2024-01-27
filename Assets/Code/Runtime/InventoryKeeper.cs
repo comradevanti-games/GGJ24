@@ -7,15 +7,15 @@ namespace Dev.ComradeVanti.GGJ24
 {
     public class InventoryKeeper : MonoBehaviour, IInventoryKeeper
     {
-        public event Action<IInventoryKeeper.InventoryChangedArgs>? InventoryChanged;
+        public event Action<IInventoryKeeper.InventoryChangedArgs>? StoredInventoryChanged;
 
 
-        public Inventory Inventory { get; private set; } = Inventory.Empty;
+        public Inventory StoredInventory { get; private set; } = Inventory.Empty;
 
 
-        public void ModifyInventory(Func<Inventory, Inventory> updateF)
+        public void ModifyStoredInventory(Func<Inventory, Inventory> updateF)
         {
-            Inventory = updateF(Inventory);
+            StoredInventory = updateF(StoredInventory);
         }
     }
 }
