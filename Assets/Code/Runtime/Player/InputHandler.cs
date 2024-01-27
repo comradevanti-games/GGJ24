@@ -72,7 +72,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 		}
 
 		public void OnPropChoosingInputReceived(InputAction.CallbackContext ctx) {
-			if (ctx.canceled) {
+			if (ctx.performed) {
 				PropChoosingInputPerformed?.Invoke(ctx.ReadValue<Vector2>());
 			}
 		}
