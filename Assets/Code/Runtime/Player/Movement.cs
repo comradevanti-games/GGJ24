@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,14 +34,28 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 			}
 		}
 
+		public bool IsAutomated { get; set; }
+
 #endregion
 
 #region Methods
+
+		private void Awake() {
+			Singletons.Require<IPhaseKeeper>().PhaseChanged += OnPhaseChanged;
+		}
 
 		public void FixedUpdate() {
 
 			if (IsMoving) {
 				charController.Move(MovementDirection * (movementSpeed * Time.fixedDeltaTime));
+			}
+
+		}
+
+		private void OnPhaseChanged(IPhaseKeeper.PhaseChangedArgs e) {
+
+			if (e.NewPhase == PlayerPhase.PropSelection) {
+				StartCoroutine(MoveCharacterTo(new Vector3(0, transform.position.y, transform.position.z)));
 			}
 
 		}
@@ -57,6 +72,23 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 
 			IsMoving = MovementDirection != Vector3.zero;
 
+		}
+
+		public void To(Vector3 targetPoint) {
+			StartCoroutine(MoveCharacterTo(targetPoint));
+		}
+
+		private IEnumerator MoveCharacterTo(Vector3 targetPoint) {
+
+			IsAutomated = true;
+
+			while (Vector3.Distance(targetPoint, transform.position) > 0.5f) {
+				Vector3 dir = (targetPoint - transform.position).normalized;
+				charController.Move(dir * (movementSpeed * Time.fixedDeltaTime));
+				yield return new WaitForFixedUpdate();
+			}
+
+			IsAutomated = false;
 		}
 
 #endregion
