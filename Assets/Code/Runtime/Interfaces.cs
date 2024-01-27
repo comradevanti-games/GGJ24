@@ -87,7 +87,7 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<StageChangedArgs>? StageChanged;
 
 
-        public Stage Stage { get; }
+        public Stage Stage { get; set; }
     }
 
     /// <summary>

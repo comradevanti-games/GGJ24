@@ -9,14 +9,25 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public event Action<IStageKeeper.StageChangedArgs>? StageChanged;
 
+        private Stage initialStage = null!;
+        private Stage currentStage = Stage.Empty;
 
-        public Stage Stage { get; private set; } = Stage.Empty;
+
+        public Stage Stage
+        {
+            get => currentStage;
+            set
+            {
+                currentStage = value;
+                StageChanged?.Invoke(new IStageKeeper.StageChangedArgs(Stage));
+            }
+        }
 
 
         private void SwitchStage(Stage stage)
         {
+            initialStage = stage;
             Stage = stage;
-            StageChanged?.Invoke(new IStageKeeper.StageChangedArgs(Stage));
         }
 
         private void OnActChanged(IActKeeper.ActChangedArgs args)
