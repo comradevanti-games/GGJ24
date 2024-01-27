@@ -54,11 +54,11 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 		}
 
 		private void OnPropChoosingInputPerformed(Vector2 choosingDirection) {
-			throw new System.NotImplementedException();
+			Debug.Log(choosingDirection);
 		}
 
 		private void OnPropSelectionInputPerformed() {
-			throw new System.NotImplementedException();
+			Debug.Log("Props Selection Confirmed");
 		}
 
 #endregion
