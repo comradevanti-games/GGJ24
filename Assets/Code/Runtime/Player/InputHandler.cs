@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,13 @@ using UnityEngine.InputSystem;
 namespace Dev.ComradeVanti.GGJ24 {
 
 	public class InputHandler : MonoBehaviour {
+
+#region Events
+
+		public event Action<InteractionInputEventArgs> SetupInteractionInputPerformed;
+		public event Action SetupCompleteInputPerformed;
+
+#endregion
 
 #region Fields
 
@@ -45,6 +53,22 @@ namespace Dev.ComradeVanti.GGJ24 {
 				default:
 					playerInput.SwitchCurrentActionMap("Idle");
 					break;
+			}
+
+		}
+
+		public void OnInteractionInputReceived(InputAction.CallbackContext ctx) {
+
+			if (ctx.canceled) {
+				SetupInteractionInputPerformed?.Invoke(new InteractionInputEventArgs(transform.position));
+			}
+
+		}
+
+		public void OnCompleteSetupInputReceived(InputAction.CallbackContext ctx) {
+
+			if (ctx.canceled) {
+				SetupCompleteInputPerformed?.Invoke();
 			}
 
 		}
