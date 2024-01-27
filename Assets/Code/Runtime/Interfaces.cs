@@ -82,4 +82,11 @@ namespace Dev.ComradeVanti.GGJ24
 
         public event Action<ActChangedArgs>? ActChanged;
     }
+
+    /// <summary>
+    /// Contains functions for querying and interacting with the crowd.
+    /// </summary>
+    public interface ILiveCrowdKeeper
+    {
+    }
 }
