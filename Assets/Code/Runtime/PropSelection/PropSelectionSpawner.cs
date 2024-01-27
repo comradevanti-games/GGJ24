@@ -14,6 +14,10 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 
 		[SerializeField] private Vector3 propSelectionOrigin = Vector3.zero;
 		[SerializeField] private GameObject propSelectionPrefab;
+		[SerializeField] private GameObject selectionArrow;
+		[SerializeField] private float arrowOffset = 5f;
+
+		private int hoveredPropID;
 
 #endregion
 
@@ -21,7 +25,14 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 
 		private List<IProp> AllProps { get; set; }
 		private IPhaseKeeper PhaseKeeper { get; set; }
-		private int HoveredPropID { get; set; }
+		private int HoveredPropID {
+			get => hoveredPropID;
+			set {
+				hoveredPropID = value;
+				SetPropSelection(HoveredPropID);
+			}
+		}
+		private List<Vector3> PropPositions { get; set; }
 
 #endregion
 
@@ -36,6 +47,7 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 		}
 
 		private void OnPhaseChanged(IPhaseKeeper.PhaseChangedArgs e) {
+
 			if (e.NewPhase == PlayerPhase.PropSelection) {
 				DisplayProps();
 			}
@@ -44,17 +56,51 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 
 		private void DisplayProps() {
 
-			for (int i = 0; i <= AllProps.Count; i++) {
+			PropPositions = new List<Vector3>();
 
-				Instantiate(propSelectionPrefab,
-					new Vector3((propSelectionOrigin.x + (1 * i)), propSelectionOrigin.y, propSelectionOrigin.z), Quaternion.identity);
+			for (int i = 0; i <= AllProps.Count - 1; i++) {
+
+				var newProp = Instantiate(propSelectionPrefab,
+					new Vector3((propSelectionOrigin.x + (2.5f * i)), propSelectionOrigin.y, propSelectionOrigin.z), Quaternion.identity);
+
+				newProp.GetComponent<SpriteRenderer>().sprite = AllProps[i].Thumbnail;
+				PropPositions.Add(newProp.transform.position);
 
 			}
+
+			HoveredPropID = 0;
+			selectionArrow.gameObject.SetActive(true);
+
+		}
+
+		public void SetPropSelection(int selectionId) {
+
+			selectionArrow.transform.position = new Vector3(PropPositions[selectionId].x, PropPositions[selectionId].y + arrowOffset,
+				PropPositions[selectionId].z);
 
 		}
 
 		private void OnPropChoosingInputPerformed(Vector2 choosingDirection) {
-			Debug.Log(choosingDirection);
+
+			if (choosingDirection.x > 0) {
+
+				if (AllProps.Count - 1 == HoveredPropID) {
+					return;
+				}
+
+				HoveredPropID++;
+			}
+
+			if (choosingDirection.x < 0) {
+
+				if (HoveredPropID == 0) {
+					return;
+				}
+
+				HoveredPropID--;
+
+			}
+
 		}
 
 		private void OnPropSelectionInputPerformed() {
