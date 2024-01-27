@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 241155165}
   - component: {fileID: 241155164}
   - component: {fileID: 241155168}
-  - component: {fileID: 241155169}
   m_Layer: 5
   m_Name: Cameraspace Canvas
   m_TagString: Untagged
@@ -235,21 +234,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &241155169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241155163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae57b11fd2fe524ebf6eb5f604bcd23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  propUIPrefab: {fileID: 114320470354710240, guid: 1dec3c3a5cd14614e9a25df55d4cca5c,
-    type: 3}
-  parentTransform: {fileID: 1345008018}
 --- !u!1 &251460295
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +956,7 @@ GameObject:
   - component: {fileID: 1345008020}
   - component: {fileID: 1345008019}
   - component: {fileID: 1345008021}
+  - component: {fileID: 1345008022}
   m_Layer: 5
   m_Name: InventoryPanel
   m_TagString: Untagged
@@ -1062,6 +1047,21 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &1345008022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1345008017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae57b11fd2fe524ebf6eb5f604bcd23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  propUIPrefab: {fileID: 114320470354710240, guid: 1dec3c3a5cd14614e9a25df55d4cca5c,
+    type: 3}
+  parentTransform: {fileID: 1345008018}
 --- !u!114 &1402204396 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6771888332630314928, guid: 7df1449939b6f604892a483c1580fbca,
