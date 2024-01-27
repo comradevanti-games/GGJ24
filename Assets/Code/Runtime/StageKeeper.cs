@@ -13,7 +13,7 @@ namespace Dev.ComradeVanti.GGJ24
         public Stage Stage { get; private set; } = Stage.Empty;
 
 
-        private void SwitchChange(Stage stage)
+        private void SwitchStage(Stage stage)
         {
             Stage = stage;
             StageChanged?.Invoke(new IStageKeeper.StageChangedArgs(Stage));
@@ -21,7 +21,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         private void OnActChanged(IActKeeper.ActChangedArgs args)
         {
-            SwitchChange(args.Act.InitialStage);
+            SwitchStage(args.Act.InitialStage);
         }
 
         private void Awake()
