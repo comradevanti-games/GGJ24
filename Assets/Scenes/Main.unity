@@ -247,10 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae57b11fd2fe524ebf6eb5f604bcd23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  propUIPrefab: {fileID: 114320470354710240, guid: 1dec3c3a5cd14614e9a25df55d4cca5c,
+    type: 3}
+  parentTransform: {fileID: 1345008018}
 --- !u!1 &251460295
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1056,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_Spacing: 20
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 0

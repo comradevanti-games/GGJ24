@@ -20,6 +20,12 @@ namespace Dev.ComradeVanti.GGJ24
         public void ModifyStoredInventory(Func<Inventory, Inventory> updateF)
         {
             StoredInventory = updateF(StoredInventory);
+            LiveInventory = StoredInventory;
+
+            StoredInventoryChanged?.Invoke(
+                new IInventoryKeeper.InventoryChangedArgs(StoredInventory));
+            LiveInventoryChanged?.Invoke(
+                new IInventoryKeeper.InventoryChangedArgs(LiveInventory));
         }
 
         private void ResetLiveInventory()
