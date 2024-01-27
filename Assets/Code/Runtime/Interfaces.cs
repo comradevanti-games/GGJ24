@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Immutable;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
@@ -16,6 +17,11 @@ namespace Dev.ComradeVanti.GGJ24
         /// The state of the stage that is the default for this act.
         /// </summary>
         public Stage InitialStage { get; }
+
+        /// <summary>
+        /// The crowd for this act.
+        /// </summary>
+        public ICrowd Crowd { get; }
     }
 
     /// <summary>
