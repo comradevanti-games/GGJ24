@@ -2,7 +2,8 @@
     "name": "Dev.ComradeVanti.GGJ24",
     "rootNamespace": "Dev.ComradeVanti.GGJ24",
     "references": [
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:83e789777d6d6a1418571ad9121f1ab9"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
