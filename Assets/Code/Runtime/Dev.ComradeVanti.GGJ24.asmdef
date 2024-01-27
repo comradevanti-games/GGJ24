@@ -2,9 +2,7 @@
     "name": "Dev.ComradeVanti.GGJ24",
     "rootNamespace": "Dev.ComradeVanti.GGJ24",
     "references": [],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,
