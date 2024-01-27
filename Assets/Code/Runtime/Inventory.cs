@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using NUnit.Framework;
 
 namespace Dev.ComradeVanti.GGJ24
 {
@@ -9,5 +10,12 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public static readonly Inventory Empty =
             new Inventory(ImmutableList<IProp>.Empty);
+
+
+        public static Inventory Add(Inventory inventory, IProp prop) =>
+            inventory with {Props = inventory.Props.Add(prop)};
+
+        public static Inventory Remove(Inventory inventory, IProp prop) =>
+            inventory with {Props = inventory.Props.Remove(prop)};
     }
 }
