@@ -117,4 +117,17 @@ namespace Dev.ComradeVanti.GGJ24
     public interface ILiveCrowdKeeper
     {
     }
+
+    /// <summary>
+    /// Contains functions for spawning people
+    /// </summary>
+    public interface IPersonSpawner
+    {
+        /// <summary>
+        /// Spawns a person at a specific position. The person will
+        /// have a random appearance. This does not initialize the person
+        /// in any other way.
+        /// </summary>
+        public GameObject SpawnPerson(Vector3 position);
+    }
 }
