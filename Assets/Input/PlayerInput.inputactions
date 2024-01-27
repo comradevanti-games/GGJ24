@@ -2,7 +2,19 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "Menu",
+            "id": "b44abf7d-c2a9-4a99-b858-80ceb299ff3d",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Idle",
+            "id": "a4facaef-b9da-4da7-be03-132fba234198",
+            "actions": [],
+            "bindings": []
+        },
+        {
+            "name": "Setup",
             "id": "57434fe9-fc1e-4b2e-8f18-ce9f22924f23",
             "actions": [
                 {
@@ -13,6 +25,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "a9fd405f-bc7c-4a7b-8717-9c5bbb3643e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Complete",
+                    "type": "Button",
+                    "id": "1af0f2b0-0c6d-4ab9-8c06-f447d6f2d954",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -48,6 +78,56 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3f65427f-ad65-48f1-9308-053734ae578a",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1965dfce-fa89-49b4-937f-32204f20a004",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Complete",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Performance",
+            "id": "84a7b31e-11ad-4261-8245-5ca088b0da93",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "5094a7d4-eea8-4bad-8ae1-3951a403f8c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "70c3da2c-0e17-4e13-9856-e8a31547f846",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
