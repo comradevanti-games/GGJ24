@@ -11,10 +11,12 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 #region Events
 
-		public event Action<InteractionInputEventArgs> SetupInteractionInputPerformed;
-		public event Action SetupCompleteInputPerformed;
-		public event Action PerformanceStartInputPerformed;
-		public event Action PauseInputPerformed;
+		public event Action<SetupInteractionEventArgs>? SetupInteractionInputPerformed;
+		public event Action? PropSelectionInputPerformed;
+		public event Action<Vector2>? PropChoosingInputPerformed;
+		public event Action? SetupCompleteInputPerformed;
+		public event Action? PerformanceStartInputPerformed;
+		public event Action? PauseInputPerformed;
 
 #endregion
 
@@ -46,6 +48,9 @@ namespace Dev.ComradeVanti.GGJ24 {
 				case PlayerPhase.Idle:
 					playerInput.SwitchCurrentActionMap("Idle");
 					break;
+				case PlayerPhase.PropSelection:
+					playerInput.SwitchCurrentActionMap("PropSelection");
+					break;
 				case PlayerPhase.Setup:
 					playerInput.SwitchCurrentActionMap("Setup");
 					break;
@@ -59,10 +64,22 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 		}
 
-		public void OnInteractionInputReceived(InputAction.CallbackContext ctx) {
+		public void OnPropSelectionInputReceived(InputAction.CallbackContext ctx) {
+			if (ctx.canceled) {
+				PropSelectionInputPerformed?.Invoke();
+			}
+		}
+
+		public void OnPropChoosingInputReceived(InputAction.CallbackContext ctx) {
+			if (ctx.canceled) {
+				PropChoosingInputPerformed?.Invoke(ctx.ReadValue<Vector2>());
+			}
+		}
+
+		public void OnSetupInteractionInputReceived(InputAction.CallbackContext ctx) {
 
 			if (ctx.canceled) {
-				SetupInteractionInputPerformed?.Invoke(new InteractionInputEventArgs(transform.position));
+				SetupInteractionInputPerformed?.Invoke(new SetupInteractionEventArgs(transform.position));
 			}
 
 		}

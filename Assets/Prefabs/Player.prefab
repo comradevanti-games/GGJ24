@@ -142,7 +142,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6771888332630314928}
         m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
-        m_MethodName: OnInteractionInputReceived
+        m_MethodName: OnSetupInteractionInputReceived
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

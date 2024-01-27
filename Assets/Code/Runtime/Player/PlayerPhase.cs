@@ -4,6 +4,7 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 
 		Idle,
 		Menu,
+		PropSelection,
 		Setup,
 		Performance
 
