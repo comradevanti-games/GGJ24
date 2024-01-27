@@ -2,12 +2,12 @@
 {
     public enum HahaScore
     {
-        S,
-        A,
-        B,
-        C,
-        D,
+        F,
         E,
-        F
+        D,
+        C,
+        B,
+        A,
+        S
     }
 }
