@@ -37,6 +37,13 @@ namespace Dev.ComradeVanti.GGJ24
             PhaseChanged?.Invoke(new IPhaseKeeper.PhaseChangedArgs(currentPhase));
         }
 
+        public void TrySwitchPhase(string nextPhaseName)
+        {
+            if (Enum.TryParse<PlayerPhase>(nextPhaseName, out var nextPhase))
+                TrySwitchPhase(nextPhase);
+            else Debug.LogError($"Unknown phase-name: {nextPhaseName}");
+        }
+
         public void Unpause()
         {
             if (currentPhase != PlayerPhase.Menu) return;
