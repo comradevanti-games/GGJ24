@@ -11,12 +11,20 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IPhaseKeeper.PhaseChangedArgs>? PhaseChanged;
 
 
-        private PlayerPhase currentPhase = PlayerPhase.Idle;
+        private PlayerPhase currentPhase = PlayerPhase.Menu;
 
 
-        private bool CanDoSwitch(PlayerPhase from, PlayerPhase to)
+        private static bool CanDoSwitch(PlayerPhase from, PlayerPhase to)
         {
-            return true;
+            return (from, to) switch
+            {
+                (PlayerPhase.Menu, _) => true,
+                (_, PlayerPhase.Menu) => true,
+                (PlayerPhase.PropSelection, PlayerPhase.Setup) => true,
+                (PlayerPhase.Setup, PlayerPhase.Performance) => true,
+                (PlayerPhase.Performance, PlayerPhase.Setup) => true,
+                _ => false
+            };
         }
 
         public void TrySwitchPhase(PlayerPhase nextPhase)
