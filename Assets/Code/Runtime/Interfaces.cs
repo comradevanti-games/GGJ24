@@ -142,9 +142,11 @@ namespace Dev.ComradeVanti.GGJ24
     }
 
     /// <summary>
-    /// Keeps track of the current stored inventory.
+    /// Keeps track of the current stored and live inventory.
     /// The stored inventory is the inventory that the player assembles
     /// during the <see cref="PlayerPhase.PropSelection"/> phase.
+    /// The live inventory is the inventory that the player uses during
+    /// the <see cref="PlayerPhase.Setup"/> phase.
     /// </summary>
     public interface IInventoryKeeper
     {
@@ -152,9 +154,12 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public event Action<InventoryChangedArgs>? StoredInventoryChanged;
+        public event Action<InventoryChangedArgs>? LiveInventoryChanged;
 
 
         public Inventory StoredInventory { get; }
+
+        public Inventory LiveInventory { get; }
 
 
         /// <param name="updateF">An update functions. This function
