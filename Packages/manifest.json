@@ -5,6 +5,21 @@
     "com.unity.render-pipelines.universal": "16.0.5",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.audio": "1.0.0",
-    "com.unity.modules.particlesystem": "1.0.0"
-  }
+    "com.unity.modules.particlesystem": "1.0.0",
+    "org.nuget.system.collections.immutable": "8.0.0"
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openupm",
+        "org.nuget.system.buffers",
+        "org.nuget.system.collections.immutable",
+        "org.nuget.system.memory",
+        "org.nuget.system.numerics.vectors",
+        "org.nuget.system.runtime.compilerservices.unsafe"
+      ]
+    }
+  ]
 }
