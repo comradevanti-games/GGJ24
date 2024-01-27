@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
@@ -20,7 +22,7 @@ namespace Dev.ComradeVanti.GGJ24
         public record PhaseChangedArgs(PlayerPhase NewPhase);
 
 
-        public event Action<PhaseChangedArgs> PhaseChanged;
+        public event Action<PhaseChangedArgs>? PhaseChanged;
     }
 
     /// <summary>
@@ -32,7 +34,7 @@ namespace Dev.ComradeVanti.GGJ24
         public record StageChangedArgs(Stage NewStage);
 
 
-        public event Action<StageChangedArgs> StageChanged;
+        public event Action<StageChangedArgs>? StageChanged;
 
 
         public Stage Stage { get; }
