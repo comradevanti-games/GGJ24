@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using UnityEngine;
@@ -14,8 +15,9 @@ namespace Dev.ComradeVanti.GGJ24
             new PropAsset?[Stage.SlotsPerStage];
 
 
-        public Stage InitialStage => new Stage(
-            initialProps.OfType<IProp?>().ToImmutableArray());
+        private IEnumerable<IProp?> InitialProps => initialProps;
+
+        public Stage InitialStage => new Stage(InitialProps.ToImmutableArray());
 
 
         private void OnValidate()
