@@ -29,14 +29,21 @@ namespace Dev.ComradeVanti.GGJ24 {
 		private void OnPhaseChanged(IPhaseKeeper.PhaseChangedArgs e) {
 
 			switch (e.NewPhase) {
+				case PlayerPhase.Menu:
+					playerInput.SwitchCurrentActionMap("Menu");
+					break;
 				case PlayerPhase.Idle:
+					playerInput.SwitchCurrentActionMap("Idle");
 					break;
 				case PlayerPhase.Setup:
+					playerInput.SwitchCurrentActionMap("Setup");
 					break;
 				case PlayerPhase.Performance:
+					playerInput.SwitchCurrentActionMap("Performance");
 					break;
 				default:
-					throw new ArgumentOutOfRangeException();
+					playerInput.SwitchCurrentActionMap("Idle");
+					break;
 			}
 
 		}
