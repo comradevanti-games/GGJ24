@@ -11,6 +11,7 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IPhaseKeeper.PhaseChangedArgs>? PhaseChanged;
 
 
+        private PlayerPhase? previousPhase = null;
         private PlayerPhase currentPhase = PlayerPhase.Menu;
 
 
@@ -31,8 +32,19 @@ namespace Dev.ComradeVanti.GGJ24
         {
             if (!CanDoSwitch(currentPhase, nextPhase)) return;
 
+            previousPhase = currentPhase;
             currentPhase = nextPhase;
             PhaseChanged?.Invoke(new IPhaseKeeper.PhaseChangedArgs(currentPhase));
+        }
+
+        public void Unpause()
+        {
+            if (currentPhase != PlayerPhase.Menu) return;
+
+            // Un-pausing switches to previous phase.
+            // When the game was just started there is no previous phase.
+            // In that case we go to prop-selection to start the game.
+            TrySwitchPhase(previousPhase ?? PlayerPhase.PropSelection);
         }
 
         private void OnActChanged(IActKeeper.ActChangedArgs _)
@@ -43,6 +55,14 @@ namespace Dev.ComradeVanti.GGJ24
         private void Awake()
         {
             Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
+
+            var inputHandler = FindAnyObjectByType<InputHandler>()!;
+            inputHandler.PauseInputPerformed +=
+                () => TrySwitchPhase(PlayerPhase.Menu);
+            inputHandler.SetupCompleteInputPerformed +=
+                () => TrySwitchPhase(PlayerPhase.Performance);
+            inputHandler.PropSelectionCompleteInputPerformed +=
+                () => TrySwitchPhase(PlayerPhase.Setup);
         }
     }
 }
