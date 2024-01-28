@@ -9,10 +9,7 @@ namespace Dev.ComradeVanti.GGJ24
         {
             transform.localEulerAngles = new Vector3(90, 270, 0);
             return new PropInteraction(
-                performanceState with {IsTripped = true, TargetSlot = currentSlotIndex + 1},
-                ImmutableHashSet<HumorEffect>
-                    .Empty
-                    .Add(new HumorEffect(HumorTypes.Schadenfreude, 1)));
+                performanceState, ImmutableHashSet<HumorEffect>.Empty);
         }
     }
 }
