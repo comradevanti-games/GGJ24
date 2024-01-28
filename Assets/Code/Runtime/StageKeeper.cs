@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
@@ -23,7 +24,10 @@ namespace Dev.ComradeVanti.GGJ24
             }
         }
 
-
+        
+        public bool CanPlaceAt(int slotIndex) =>
+            Stage.Props.ElementAtOrDefault(slotIndex) == null;
+        
         private void SwitchStage(Stage stage)
         {
             initialStage = stage;

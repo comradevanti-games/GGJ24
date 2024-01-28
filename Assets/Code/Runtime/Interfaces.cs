@@ -88,6 +88,10 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public Stage Stage { get; set; }
+
+
+        public bool CanPlaceAt(int slotIndex);
+
     }
 
     /// <summary>
