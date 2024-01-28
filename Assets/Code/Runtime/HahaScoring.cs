@@ -9,12 +9,12 @@ namespace Dev.ComradeVanti.GGJ24
         public static HahaScore HahaScoreFromHahaValue(float hahaValue) =>
             hahaValue switch
             {
-                > 100 => HahaScore.S,
-                > 90 => HahaScore.A,
-                > 80 => HahaScore.B,
-                > 70 => HahaScore.C,
-                > 60 => HahaScore.D,
-                > 50 => HahaScore.E,
+                > 10 => HahaScore.S,
+                > 9 => HahaScore.A,
+                > 8 => HahaScore.B,
+                > 7 => HahaScore.C,
+                > 6 => HahaScore.D,
+                > 5 => HahaScore.E,
                 _ => HahaScore.F
             };
 
