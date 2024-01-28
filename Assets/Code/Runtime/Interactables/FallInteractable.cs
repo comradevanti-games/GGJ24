@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
@@ -6,7 +7,9 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public PropInteraction TryInteraction(int currentSlotIndex, PerformanceState performanceState)
         {
-            throw new System.NotImplementedException();
+            return new PropInteraction(
+                performanceState with {IsInAir = true, TargetSlot = currentSlotIndex + 1},
+                ImmutableHashSet<HumorEffect>.Empty);
         }
     }
 }
