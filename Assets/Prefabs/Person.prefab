@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2926552576835056786}
   - component: {fileID: 1656886481434393154}
-  - component: {fileID: 7887172574367768996}
+  - component: {fileID: 401692062554782139}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -48,24 +48,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   personHat: {fileID: 7495816195715530356}
   hair: {fileID: 105769552647351931}
---- !u!111 &7887172574367768996
-Animation:
+  animationController: {fileID: 401692062554782139}
+--- !u!95 &401692062554782139
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6010158903762255278}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 8321051577911733674, guid: 24e4e401f07772446bf5e72903c47d80, type: 3}
-  - {fileID: 7180118612107383716, guid: 24e4e401f07772446bf5e72903c47d80, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
+  m_Avatar: {fileID: 9000000, guid: 24e4e401f07772446bf5e72903c47d80, type: 3}
+  m_Controller: {fileID: 9100000, guid: 55e26d672496fba41bc260f9858a35bf, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_CullingType: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &142288295570795315
 PrefabInstance:
   m_ObjectHideFlags: 0
