@@ -28,7 +28,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         public int? TryGetSlotFor(float x)
         {
-            var diff = firstSlotTransform.position.x - x;
+            var diff = x- firstSlotTransform.position.x;
             if (diff < 0) return null;
 
             var slot = Mathf.FloorToInt(diff / UnitsPerSlot);
