@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
@@ -33,12 +34,15 @@ namespace Dev.ComradeVanti.GGJ24
             var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
 
             var nextTarget = state.TargetSlot + 1;
-            if (!prop || !prop!.TryGetComponent<IPropInteractable>(out var interactable))
+            if (!prop)
                 return state with {TargetSlot = nextTarget};
 
-            var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
-            if (interaction != null)
+            var interactables = prop!.GetComponents<IPropInteractable>();
+            foreach (var interactable in interactables)
             {
+                var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
+                if (interaction == null) continue;
+
                 playerStateKeeper.PlayerState = interaction.NewPlayerState;
             }
 
