@@ -7,6 +7,6 @@ namespace Dev.ComradeVanti.GGJ24
         float Strength);
 
     public record PropInteraction(
-        PlayerState NewPlayerState,
+        PerformanceState NewPerformanceState,
         IImmutableSet<HumorEffect> Effects);
 }

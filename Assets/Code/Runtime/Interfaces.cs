@@ -175,11 +175,7 @@ namespace Dev.ComradeVanti.GGJ24
 
     public interface IPropInteractable
     {
-        public PropInteraction? TryInteraction(PlayerState playerState);
+        public PropInteraction? TryInteraction(PerformanceState performanceState);
     }
 
-    public interface IPlayerStateKeeper
-    {
-        public PlayerState PlayerState { get; set; }
-    }
 }
