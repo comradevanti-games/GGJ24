@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87240426253f4bddad9a97f0399ad687, type: 3}
-  m_Name: Rake
+  m_Name: Beartrap
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3780806726267151928, guid: 331f7ffb9789a9546ab865971f6175e8, type: 3}
-  thumbnail: {fileID: 21300000, guid: 3fecaada907b4e44bbc8d8fd9df4e0b9, type: 3}
+  prefab: {fileID: 3780806726267151928, guid: 97c8a58091bd38a46a2803063b44ef18, type: 3}
+  thumbnail: {fileID: 21300000, guid: 26ae7aae076f90842a08364e715267ed, type: 3}
   description: 'Rake hurts when stepped on.
 
 

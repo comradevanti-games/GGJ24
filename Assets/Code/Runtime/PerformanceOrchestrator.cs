@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
@@ -20,6 +21,29 @@ namespace Dev.ComradeVanti.GGJ24
 
         private PerformanceState ProgressPerformance(PerformanceState state)
         {
+            var targetPlayerPosition =
+                liveStageKeeper.TryGetPositionForSlot(state.TargetSlot);
+            var playerHasReachedTarget = Vector3.Distance(
+                targetPlayerPosition!.Value,
+                playerMover.Position) < 0.05f;
+            if (!playerHasReachedTarget) return state;
+
+            if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
+
+            var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
+
+            state = state with {TargetSlot = state.TargetSlot + 1};
+            if (!prop) return state;
+
+            var interactables = prop!.GetComponents<IPropInteractable>();
+            foreach (var interactable in interactables)
+            {
+                var interaction = interactable.TryInteraction(state);
+                if (interaction == null) continue;
+
+                state = interaction.NewPerformanceState;
+            }
+
             return state;
         }
 
@@ -66,7 +90,10 @@ namespace Dev.ComradeVanti.GGJ24
         private void StartPerformance()
         {
             performanceCancellationTokenSource = new CancellationTokenSource();
-            Perform(performanceCancellationTokenSource.Token);
+            var merged = CancellationTokenSource.CreateLinkedTokenSource(
+                performanceCancellationTokenSource.Token,
+                destroyCancellationToken);
+            Perform(merged.Token);
         }
 
         private void StopPerformance()

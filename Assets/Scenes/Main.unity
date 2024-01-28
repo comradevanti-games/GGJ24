@@ -571,14 +571,14 @@ MonoBehaviour:
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
-  m_RendererIndex: -1
+  m_RendererIndex: 0
   m_VolumeLayerMask:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 0
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -937,7 +937,8 @@ PrefabInstance:
       propertyPath: rightCurtainTransform
       value: 
       objectReference: {fileID: 483108170}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4878819190931928576, guid: bb5bb1bfe6f93654a8baf81a6697962b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1375,20 +1376,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 145685328827244053, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 542981062178905046, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 807649107509517411, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
@@ -1408,7 +1399,7 @@ PrefabInstance:
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
@@ -1418,7 +1409,7 @@ PrefabInstance:
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
@@ -1433,21 +1424,11 @@ PrefabInstance:
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3761523409596846185, guid: 7df1449939b6f604892a483c1580fbca,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4197839591715404650, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4652323624761150843, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5046555601354515044, guid: 7df1449939b6f604892a483c1580fbca,
@@ -1455,16 +1436,6 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 784364625}
-    - target: {fileID: 6693411567200852154, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_Avatar
-      value: 
-      objectReference: {fileID: 9000000, guid: 6e6a798ee484506468f201c706737a48, type: 3}
-    - target: {fileID: 8925742230884863129, guid: 7df1449939b6f604892a483c1580fbca,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1722,7 +1693,7 @@ MonoBehaviour:
   propSelectionPrefab: {fileID: 3822667899170503291, guid: e8b2f7dbe1201ae4fad2623b7f12a144,
     type: 3}
   selectionArrow: {fileID: 2041946342}
-  arrowOffset: 5
+  arrowOffset: 3.5
 --- !u!1 &1989128461
 GameObject:
   m_ObjectHideFlags: 0

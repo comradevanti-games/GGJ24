@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System.Linq;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
@@ -28,7 +29,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         public int? TryGetSlotFor(float x)
         {
-            var diff = x- firstSlotTransform.position.x;
+            var diff = x - firstSlotTransform.position.x;
             if (diff < 0) return null;
 
             var slot = Mathf.FloorToInt(diff / UnitsPerSlot);
@@ -36,6 +37,9 @@ namespace Dev.ComradeVanti.GGJ24
 
             return slot;
         }
+
+        public GameObject? TryGetLivePropAtSlot(int slotIndex) =>
+            liveProps.ElementAtOrDefault(slotIndex);
 
         private void ClearSlot(int slotIndex)
         {

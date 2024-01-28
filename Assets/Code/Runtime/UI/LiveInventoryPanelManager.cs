@@ -22,10 +22,6 @@ namespace Dev.ComradeVanti.GGJ24
 
         #region Methods
 
-        private void AddPropDisplay(IProp prop, int index)
-        {
-        }
-
         private void Display(Inventory inventory)
         {
             for (var index = 0; index < Inventory.MaxItemCount; index++)
