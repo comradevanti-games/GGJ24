@@ -29,13 +29,16 @@ namespace Dev.ComradeVanti.GGJ24
                 playerMover.Position) < 0.05f;
             if (!playerHasReachedTarget) return state;
 
+            // When reaching target we stop falling
+            state = state with {IsInAir = false};
+            
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
 
             var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
 
             state = state with {TargetSlot = state.TargetSlot + 1};
             if (!prop) return state;
-
+            
             var interactables = prop!.GetComponents<IPropInteractable>();
             foreach (var interactable in interactables)
             {
