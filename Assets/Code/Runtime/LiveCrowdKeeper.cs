@@ -19,7 +19,7 @@ namespace Dev.ComradeVanti.GGJ24
         private IEnumerable<Vector3> CalculatePeoplePositions(int personCount)
         {
             var crowdCenterPosition = crowdCenterTransform.position;
-            var totalSpace = personCount * SpaceBetweenPeople;
+            var totalSpace = (personCount - 1) * SpaceBetweenPeople;
             var minX = crowdCenterPosition.x - totalSpace / 2;
 
             for (var i = 0; i < personCount; i++)
@@ -49,7 +49,7 @@ namespace Dev.ComradeVanti.GGJ24
 
             var positions = CalculatePeoplePositions(crowd.People.Length)
                 .ToImmutableArray();
-            
+
             for (var index = 0; index < crowd.People.Length; index++)
             {
                 var person = crowd.People[index];
