@@ -19,6 +19,11 @@ namespace Dev.ComradeVanti.GGJ24
         private float currentTotalHahaValue;
         private readonly IList<LivePerson> livePeople = new List<LivePerson>();
 
+
+        public HahaScore CurrentHahaScore =>
+            HahaScoring.HahaScoreFromHahaValue(currentTotalHahaValue);
+
+
         private IEnumerable<Vector3> CalculatePeoplePositions(int personCount)
         {
             var crowdCenterPosition = crowdCenterTransform.position;
@@ -78,6 +83,7 @@ namespace Dev.ComradeVanti.GGJ24
                     currentTotalHahaValue = 0;
             };
         }
+
 
         public void Register(ISet<HumorEffect> humorEffects)
         {

@@ -139,6 +139,9 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface ILiveCrowdKeeper
     {
+        public HahaScore CurrentHahaScore { get; }
+
+        
         void Register(ISet<HumorEffect> humorEffects);
     }
 
