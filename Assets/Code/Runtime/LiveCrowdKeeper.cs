@@ -2,65 +2,88 @@
 
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using UnityEngine;
 
-namespace Dev.ComradeVanti.GGJ24 {
+namespace Dev.ComradeVanti.GGJ24
+{
+    public class LiveCrowdKeeper : MonoBehaviour, ILiveCrowdKeeper
+    {
+        private const float SpaceBetweenPeople = 1.85f;
 
-	public class LiveCrowdKeeper : MonoBehaviour, ILiveCrowdKeeper {
+        [SerializeField] private Transform crowdCenterTransform = null!;
 
-		private const float SpaceBetweenPeople = 1.85f;
+        private IPersonSpawner personSpawner = null!;
+        private ICrowd currentCrowd = null!;
+        private readonly IList<LivePerson> livePeople = new List<LivePerson>();
 
-		[SerializeField] private Transform crowdCenterTransform = null!;
+        private IEnumerable<Vector3> CalculatePeoplePositions(int personCount)
+        {
+            var crowdCenterPosition = crowdCenterTransform.position;
+            var totalSpace = (personCount - 1) * SpaceBetweenPeople;
+            var minX = crowdCenterPosition.x - totalSpace / 2;
 
-		private IPersonSpawner personSpawner = null!;
-		private readonly IList<GameObject> livePeople = new List<GameObject>();
+            for (var i = 0; i < personCount; i++)
+            {
+                var x = minX + SpaceBetweenPeople * i;
+                yield return new Vector3(x, crowdCenterPosition.y, crowdCenterPosition.z);
+            }
+        }
 
-		private IEnumerable<Vector3> CalculatePeoplePositions(int personCount) {
+        private void ClearCrowd()
+        {
+            foreach (var livePerson in livePeople)
+                Destroy(livePerson);
 
-			var crowdCenterPosition = crowdCenterTransform.position;
-			var totalSpace = (personCount - 1) * SpaceBetweenPeople;
-			var minX = crowdCenterPosition.x - totalSpace / 2;
+            livePeople.Clear();
+        }
 
-			for (var i = 0; i < personCount; i++) {
-				var x = minX + SpaceBetweenPeople * i;
-				yield return new Vector3(x, crowdCenterPosition.y, crowdCenterPosition.z);
-			}
-		}
+        private void AddPerson(Vector3 position, IPerson _)
+        {
+            var livePerson = personSpawner.SpawnPerson(position);
+            livePeople.Add(livePerson);
+        }
 
-		private void ClearCrowd() {
-			foreach (var livePerson in livePeople)
-				Destroy(livePerson);
+        private void ReplaceCrowd(ICrowd crowd)
+        {
+            ClearCrowd();
 
-			livePeople.Clear();
-		}
+            var positions = CalculatePeoplePositions(crowd.People.Length)
+                .ToImmutableArray();
 
-		private void AddPerson(Vector3 position, IPerson _) {
-			var livePerson = personSpawner.SpawnPerson(position);
-			livePeople.Add(livePerson);
-		}
+            for (var index = 0; index < crowd.People.Length; index++)
+            {
+                var person = crowd.People[index];
+                var position = positions[index];
+                AddPerson(position, person);
+            }
 
-		private void ReplaceCrowd(ICrowd crowd) {
-			ClearCrowd();
+            currentCrowd = crowd;
+        }
 
-			var positions = CalculatePeoplePositions(crowd.People.Length)
-				.ToImmutableArray();
+        private void OnActChanged(IActKeeper.ActChangedArgs args)
+        {
+            ReplaceCrowd(args.Act.Crowd);
+        }
 
-			for (var index = 0; index < crowd.People.Length; index++) {
-				var person = crowd.People[index];
-				var position = positions[index];
-				AddPerson(position, person);
-			}
-		}
+        private void Awake()
+        {
+            personSpawner = Singletons.Require<IPersonSpawner>();
+            Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
+        }
 
-		private void OnActChanged(IActKeeper.ActChangedArgs args) {
-			ReplaceCrowd(args.Act.Crowd);
-		}
+        public void Register(ISet<HumorEffect> humorEffects)
+        {
+            for (var i = 0; i < livePeople.Count; i++)
+            {
+                var person = currentCrowd.People[i];
+                var livePerson = livePeople[i];
 
-		private void Awake() {
-			personSpawner = Singletons.Require<IPersonSpawner>();
-			Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
-		}
+                var scoreValue = humorEffects.Aggregate(0f, (score, effect) =>
+                    HahaScoring.HahaValueForPerson(person, effect));
 
-	}
-
+                livePerson.SetHahaScore(scoreValue);
+            }
+        }
+    }
 }

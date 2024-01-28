@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
@@ -16,6 +17,7 @@ namespace Dev.ComradeVanti.GGJ24
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
+        private ILiveCrowdKeeper crowdKeeper = null!;
         private PlayerAnimationHandler playerAnimationHandler = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
         private bool isDoingProgressStoppingAnimation;
@@ -57,6 +59,8 @@ namespace Dev.ComradeVanti.GGJ24
             if (!prop) return state;
 
             var interactables = prop!.GetComponents<IPropInteractable>();
+            var humorEffects = new HashSet<HumorEffect>();
+
             foreach (var interactable in interactables)
             {
                 var currentPlayerSlot =
@@ -66,8 +70,10 @@ namespace Dev.ComradeVanti.GGJ24
                 if (interaction == null) continue;
 
                 state = interaction.NewPerformanceState;
+                foreach (var effect in interaction.Effects) humorEffects.Add(effect);
             }
 
+            crowdKeeper.Register(humorEffects);
             return state;
         }
 
@@ -174,6 +180,7 @@ namespace Dev.ComradeVanti.GGJ24
             playerMover = FindFirstObjectByType<Movement>()!;
             liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
             playerAnimationHandler = FindFirstObjectByType<PlayerAnimationHandler>()!;
+            crowdKeeper = Singletons.Require<ILiveCrowdKeeper>();
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }
