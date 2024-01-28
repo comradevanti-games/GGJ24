@@ -4,69 +4,63 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using UnityEngine;
 
-namespace Dev.ComradeVanti.GGJ24
-{
-    public class LiveCrowdKeeper : MonoBehaviour, ILiveCrowdKeeper
-    {
-        private const float SpaceBetweenPeople = 0.75f;
+namespace Dev.ComradeVanti.GGJ24 {
 
-        [SerializeField] private Transform crowdCenterTransform = null!;
+	public class LiveCrowdKeeper : MonoBehaviour, ILiveCrowdKeeper {
 
-        private IPersonSpawner personSpawner = null!;
-        private readonly IList<GameObject> livePeople = new List<GameObject>();
+		private const float SpaceBetweenPeople = 1.85f;
 
+		[SerializeField] private Transform crowdCenterTransform = null!;
 
-        private IEnumerable<Vector3> CalculatePeoplePositions(int personCount)
-        {
-            var crowdCenterPosition = crowdCenterTransform.position;
-            var totalSpace = (personCount - 1) * SpaceBetweenPeople;
-            var minX = crowdCenterPosition.x - totalSpace / 2;
+		private IPersonSpawner personSpawner = null!;
+		private readonly IList<GameObject> livePeople = new List<GameObject>();
 
-            for (var i = 0; i < personCount; i++)
-            {
-                var x = minX + SpaceBetweenPeople * i;
-                yield return new Vector3(x, crowdCenterPosition.y, crowdCenterPosition.z);
-            }
-        }
+		private IEnumerable<Vector3> CalculatePeoplePositions(int personCount) {
 
-        private void ClearCrowd()
-        {
-            foreach (var livePerson in livePeople)
-                Destroy(livePerson);
+			var crowdCenterPosition = crowdCenterTransform.position;
+			var totalSpace = (personCount - 1) * SpaceBetweenPeople;
+			var minX = crowdCenterPosition.x - totalSpace / 2;
 
-            livePeople.Clear();
-        }
+			for (var i = 0; i < personCount; i++) {
+				var x = minX + SpaceBetweenPeople * i;
+				yield return new Vector3(x, crowdCenterPosition.y, crowdCenterPosition.z);
+			}
+		}
 
-        private void AddPerson(Vector3 position, IPerson _)
-        {
-            var livePerson = personSpawner.SpawnPerson(position);
-            livePeople.Add(livePerson);
-        }
+		private void ClearCrowd() {
+			foreach (var livePerson in livePeople)
+				Destroy(livePerson);
 
-        private void ReplaceCrowd(ICrowd crowd)
-        {
-            ClearCrowd();
+			livePeople.Clear();
+		}
 
-            var positions = CalculatePeoplePositions(crowd.People.Length)
-                .ToImmutableArray();
+		private void AddPerson(Vector3 position, IPerson _) {
+			var livePerson = personSpawner.SpawnPerson(position);
+			livePeople.Add(livePerson);
+		}
 
-            for (var index = 0; index < crowd.People.Length; index++)
-            {
-                var person = crowd.People[index];
-                var position = positions[index];
-                AddPerson(position, person);
-            }
-        }
+		private void ReplaceCrowd(ICrowd crowd) {
+			ClearCrowd();
 
-        private void OnActChanged(IActKeeper.ActChangedArgs args)
-        {
-            ReplaceCrowd(args.Act.Crowd);
-        }
+			var positions = CalculatePeoplePositions(crowd.People.Length)
+				.ToImmutableArray();
 
-        private void Awake()
-        {
-            personSpawner = Singletons.Require<IPersonSpawner>();
-            Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
-        }
-    }
+			for (var index = 0; index < crowd.People.Length; index++) {
+				var person = crowd.People[index];
+				var position = positions[index];
+				AddPerson(position, person);
+			}
+		}
+
+		private void OnActChanged(IActKeeper.ActChangedArgs args) {
+			ReplaceCrowd(args.Act.Crowd);
+		}
+
+		private void Awake() {
+			personSpawner = Singletons.Require<IPersonSpawner>();
+			Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
+		}
+
+	}
+
 }
