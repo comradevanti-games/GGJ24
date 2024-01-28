@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FartCushion
   m_EditorClassIdentifier: 
   prefab: {fileID: 3780806726267151928, guid: 801ea57fab03d354c987e053ad065ad6, type: 3}
-  thumbnail: {fileID: 21300000, guid: 447eed39305ef4a48ae94d020eb59f2d, type: 3}
+  thumbnail: {fileID: 21300000, guid: b27fc486bb83dbc429a58b44490dde89, type: 3}
   description: 'Rake hurts when stepped on.
 
 

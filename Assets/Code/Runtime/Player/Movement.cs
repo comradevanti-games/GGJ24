@@ -3,114 +3,102 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Dev.ComradeVanti.GGJ24.Player
-{
-    public class Movement : MonoBehaviour
-    {
-        #region Events
+namespace Dev.ComradeVanti.GGJ24.Player {
 
-        public event Action<bool> MovementStateChanged;
+	public class Movement : MonoBehaviour {
 
-        #endregion
+#region Events
 
-        #region Fields
+		public event Action<bool, Vector3> MovementStateChanged;
 
-        [SerializeField] private CharacterController charController;
-        [SerializeField] private float movementSpeed;
+#endregion
 
-        private bool isMoving;
+#region Fields
 
-        #endregion
+		[SerializeField] private CharacterController charController;
+		[SerializeField] private float movementSpeed;
 
-        #region Properties
+		private bool isMoving;
 
-        public Vector3 MovementDirection { get; private set; }
+#endregion
 
-        public bool IsMoving
-        {
-            get => isMoving;
-            set
-            {
-                isMoving = value;
-                MovementStateChanged?.Invoke(IsMoving);
-            }
-        }
+#region Properties
 
-        public bool IsAutomated { get; set; }
+		public Vector3 MovementDirection { get; private set; }
 
-        public Vector3 Position => charController.transform.position;
+		public bool IsMoving {
+			get => isMoving;
+			set {
+				isMoving = value;
+				MovementStateChanged?.Invoke(IsMoving, MovementDirection);
+			}
+		}
 
-        #endregion
+		public bool IsAutomated { get; set; }
 
-        #region Methods
+		public Vector3 Position => charController.transform.position;
 
-        private void Awake()
-        {
-            Singletons.Require<IPhaseKeeper>().PhaseChanged += OnPhaseChanged;
-        }
+#endregion
 
-        public void FixedUpdate()
-        {
-            if (IsMoving)
-            {
-                charController.Move(MovementDirection * (movementSpeed * Time.fixedDeltaTime));
-            }
-        }
+#region Methods
 
-        private void OnPhaseChanged(IPhaseKeeper.PhaseChangedArgs e)
-        {
-            if (e.NewPhase == PlayerPhase.PropSelection)
-            {
-                StartCoroutine(MoveCharacterTo(new Vector3(0, transform.position.y, transform.position.z)));
-            }
-        }
+		private void Awake() {
+			Singletons.Require<IPhaseKeeper>().PhaseChanged += OnPhaseChanged;
+		}
 
-        public void OnDirectionalInputReceived(InputAction.CallbackContext ctx)
-        {
-            if (ctx.performed)
-            {
-                MovementDirection = new Vector3(ctx.ReadValue<float>(), 0, 0);
-            }
+		public void FixedUpdate() {
+			if (IsMoving) {
+				charController.Move(MovementDirection * (movementSpeed * Time.fixedDeltaTime));
+			}
+		}
 
-            if (ctx.canceled)
-            {
-                MovementDirection = Vector3.zero;
-            }
+		private void OnPhaseChanged(IPhaseKeeper.PhaseChangedArgs e) {
+			if (e.NewPhase == PlayerPhase.PropSelection) {
+				StartCoroutine(MoveCharacterTo(new Vector3(0, transform.position.y, transform.position.z)));
+			}
+		}
 
-            IsMoving = MovementDirection != Vector3.zero;
-        }
+		public void OnDirectionalInputReceived(InputAction.CallbackContext ctx) {
+			if (ctx.performed) {
+				MovementDirection = new Vector3(ctx.ReadValue<float>(), 0, 0);
+			}
 
-        public void To(Vector3 targetPoint)
-        {
-            StopAllCoroutines();
-            StartCoroutine(MoveCharacterTo(targetPoint));
-        }
+			if (ctx.canceled) {
+				MovementDirection = Vector3.zero;
+			}
 
-        public void ToInstantaneous(Vector3 targetPosition)
-        {
-            charController.enabled = false;
-            charController.transform.position = targetPosition;
-            charController.enabled = true;
-        }
+			IsMoving = MovementDirection != Vector3.zero;
+		}
 
-        private IEnumerator MoveCharacterTo(Vector3 targetPoint)
-        {
-            IsAutomated = true;
+		public void To(Vector3 targetPoint) {
+			StopAllCoroutines();
+			StartCoroutine(MoveCharacterTo(targetPoint));
+		}
 
-            while (Vector3.Distance(targetPoint, Position) > float.Epsilon)
-            {
-                var nextPosition = Vector3.MoveTowards(
-                    Position, targetPoint,
-                    movementSpeed * Time.fixedDeltaTime);
-                var delta = nextPosition - Position;
-                charController.Move(delta);
+		public void ToInstantaneous(Vector3 targetPosition) {
+			charController.enabled = false;
+			charController.transform.position = targetPosition;
+			charController.enabled = true;
+		}
 
-                yield return new WaitForFixedUpdate();
-            }
+		private IEnumerator MoveCharacterTo(Vector3 targetPoint) {
+			IsAutomated = true;
 
-            IsAutomated = false;
-        }
+			while (Vector3.Distance(targetPoint, Position) > float.Epsilon) {
+				var nextPosition = Vector3.MoveTowards(
+					Position, targetPoint,
+					movementSpeed * Time.fixedDeltaTime);
+				var delta = nextPosition - Position;
+				charController.Move(delta);
 
-        #endregion
-    }
+				yield return new WaitForFixedUpdate();
+			}
+
+			IsAutomated = false;
+		}
+
+#endregion
+
+	}
+
 }
