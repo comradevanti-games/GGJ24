@@ -14,7 +14,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 		public void EnableHat() {
 
 			float choice = Random.Range(0f, 1f);
-			personHat.SetActive(choice > 0.5f ? true : false);
+			personHat.SetActive(choice > 0.5f);
 
 		}
 
@@ -31,7 +31,6 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 			if (score < 1) {
 				animationController.SetTrigger(Idle);
-				//animationKeeper("Armature|Idle");
 			}
 
 			if (score is >= 1 and < 2) {
