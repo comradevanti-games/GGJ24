@@ -32,6 +32,10 @@ namespace Dev.ComradeVanti.GGJ24
         {
             if (!CanDoSwitch(currentPhase, nextPhase)) return;
 
+            if (nextPhase == PlayerPhase.Setup) {
+                if (Singletons.Require<IInventoryKeeper>().StoredInventory.Props.Count == 0) return;
+            }
+
             previousPhase = currentPhase;
             currentPhase = nextPhase;
             PhaseChanged?.Invoke(new IPhaseKeeper.PhaseChangedArgs(currentPhase));
