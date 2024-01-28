@@ -33,8 +33,17 @@ namespace Dev.ComradeVanti.GGJ24
             playerMover.To(targetPlayerPosition.Value);
         }
 
+        private void PrepareForPerformance()
+        {
+            var firstSlotPosition = liveStageKeeper.TryGetPositionForSlot(0);
+            var initialPosition = firstSlotPosition! - Vector3.right * 10;
+            playerMover.ToInstantaneous(initialPosition!.Value);
+        }
+
         private async void Perform(CancellationToken ct)
         {
+            PrepareForPerformance();
+
             var currentState = PerformanceState.initial;
             ApplyState(currentState);
 
