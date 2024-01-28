@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
@@ -13,26 +14,28 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         private int? liveSelectedPropIndex = null;
-        private Inventory liveInventory = Inventory.Empty;
 
 
         public Inventory StoredInventory { get; private set; } = Inventory.Empty;
 
-        private Inventory LiveInventory
+        public IProp? LiveSelectedProp =>
+            liveSelectedPropIndex == null
+                ? null
+                : LiveInventory.Props.ElementAtOrDefault(liveSelectedPropIndex.Value);
+
+        private Inventory LiveInventory { get; set; } = Inventory.Empty;
+
+        private void SendLiveInventoryChangeEvent()
         {
-            get => liveInventory;
-            set
-            {
-                liveInventory = value;
-                LiveInventoryChanged?.Invoke(
-                    new IInventoryKeeper.LiveInventoryChangedArgs(
-                        LiveInventory, liveSelectedPropIndex));
-            }
+            LiveInventoryChanged?.Invoke(
+                new IInventoryKeeper.LiveInventoryChangedArgs(
+                    LiveInventory, liveSelectedPropIndex));
         }
 
         private void ResetLiveInventory()
         {
             LiveInventory = StoredInventory;
+            SendLiveInventoryChangeEvent();
         }
 
         public void ModifyStoredInventory(Func<Inventory, Inventory> updateF)
@@ -44,16 +47,24 @@ namespace Dev.ComradeVanti.GGJ24
             ResetLiveInventory();
         }
 
+        public void TryUseSelectedProp()
+        {
+            var selectedProp = LiveSelectedProp;
+            if (selectedProp == null) return;
+
+            LiveInventory = Inventory.Remove(LiveInventory, selectedProp);
+            TryChangeSelectedInventoryItem(-1);
+            SendLiveInventoryChangeEvent();
+        }
+
         private void TryChangeSelectedInventoryItem(int changeDirection)
         {
             if (changeDirection == 0) return;
             if (liveSelectedPropIndex == null) return;
-
+            if (LiveInventory.Props.Count == 0) return;
+            
             liveSelectedPropIndex = (int) Mathf.Repeat(
                 liveSelectedPropIndex.Value - changeDirection, LiveInventory.Props.Count);
-            LiveInventoryChanged?.Invoke(
-                new IInventoryKeeper.LiveInventoryChangedArgs(
-                    LiveInventory, liveSelectedPropIndex));
         }
 
         private void Awake()
@@ -70,7 +81,11 @@ namespace Dev.ComradeVanti.GGJ24
             };
 
             var inputHandler = FindFirstObjectByType<InputHandler>()!;
-            inputHandler.SetupInventoryChoosingInputPerformed += TryChangeSelectedInventoryItem;
+            inputHandler.SetupInventoryChoosingInputPerformed += direction =>
+            {
+                TryChangeSelectedInventoryItem(direction);
+                SendLiveInventoryChangeEvent();
+            };
         }
     }
 }

@@ -165,12 +165,16 @@ namespace Dev.ComradeVanti.GGJ24
 
         public Inventory StoredInventory { get; }
 
+        public IProp? LiveSelectedProp { get; }
+
 
         /// <param name="updateF">An update functions. This function
         /// is provided the current state of the inventory as a parameter.
         /// The inventory that is returned from this function will
         /// be used as the new state.</param>
         public void ModifyStoredInventory(Func<Inventory, Inventory> updateF);
+
+        public void TryUseSelectedProp();
     }
 
     public interface IPropInteractable
