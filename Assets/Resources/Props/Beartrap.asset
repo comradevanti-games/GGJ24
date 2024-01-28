@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Beartrap
   m_EditorClassIdentifier: 
   prefab: {fileID: 3780806726267151928, guid: 97c8a58091bd38a46a2803063b44ef18, type: 3}
-  thumbnail: {fileID: 21300000, guid: 447eed39305ef4a48ae94d020eb59f2d, type: 3}
+  thumbnail: {fileID: 21300000, guid: 26ae7aae076f90842a08364e715267ed, type: 3}
   description: 'Rake hurts when stepped on.
 
 
