@@ -96,7 +96,7 @@ namespace Dev.ComradeVanti.GGJ24.Player
         private IEnumerator MoveCharacterTo(Vector3 targetPoint)
         {
             IsAutomated = true;
-            IsMoving = true;
+            transform.LookAt(targetPoint);
 
             while (Vector3.Distance(targetPoint, Position) > float.Epsilon)
             {
@@ -109,7 +109,6 @@ namespace Dev.ComradeVanti.GGJ24.Player
                 yield return new WaitForFixedUpdate();
             }
 
-            IsMoving = false;
             IsAutomated = false;
         }
 
