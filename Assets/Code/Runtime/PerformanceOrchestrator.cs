@@ -41,6 +41,9 @@ namespace Dev.ComradeVanti.GGJ24
 
         private PerformanceState ProgressPerformance(PerformanceState state)
         {
+            // Stop tripping
+            state = state with {IsTripped = false};
+
             var targetPlayerPosition =
                 liveStageKeeper.TryGetPositionForSlot(state.TargetSlot);
             var playerHasReachedTarget = Vector3.Distance(
