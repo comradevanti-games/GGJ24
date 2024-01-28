@@ -50,7 +50,7 @@ namespace Dev.ComradeVanti.GGJ24
         private void OnPhaseChanged(PlayerPhase phase)
         {
             var shouldCurtainsBeClosed =
-                phase is PlayerPhase.Menu or PlayerPhase.Idle;
+                phase is PlayerPhase.Menu or PlayerPhase.Idle or PlayerPhase.Eval;
             targetClosedness = shouldCurtainsBeClosed ? 1 : 0;
         }
 

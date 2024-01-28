@@ -9,6 +9,7 @@ namespace Dev.ComradeVanti.GGJ24
 {
     public interface IPerformanceOrchestrator
     {
+        public event Action? PerformanceCompleted;
     }
 
     /// <summary>
