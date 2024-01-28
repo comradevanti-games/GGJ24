@@ -1,3 +1,5 @@
+#nullable enable
+
 using System.Linq;
 using UnityEngine;
 
@@ -18,6 +20,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 		private void Awake() {
 			StageKeeper = Singletons.Require<IStageKeeper>();
 			LiveStageKeeper = Singletons.Require<LiveStageKeeper>();
+			InventoryKeeper = Singletons.Require<IInventoryKeeper>();
 			FindAnyObjectByType<InputHandler>().SetupInteractionInputPerformed += OnSetupInteractionReceived;
 		}
 
@@ -29,7 +32,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 				return;
 			}
 
-			var newStage = Stage.TryPlaceProp(StageKeeper.Stage, (int)currentPlayerSlotIndex,
+			Stage? newStage = Stage.TryPlaceProp(StageKeeper.Stage, currentPlayerSlotIndex.Value,
 				InventoryKeeper.StoredInventory.Props.First());
 
 			if (newStage != null) {
