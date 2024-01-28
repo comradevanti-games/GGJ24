@@ -40,7 +40,8 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 			playerAnimator.SetBool(IsMoving, isMoving);
 		}
 
-		private void OnPlayerPerformanceStateChanged() {
+		public void SetPerformanceState(PerformanceState newState) {
+			
 			
 			
 			
