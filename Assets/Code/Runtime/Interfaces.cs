@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
@@ -138,6 +139,10 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface ILiveCrowdKeeper
     {
+        public HahaScore CurrentHahaScore { get; }
+
+        
+        void Register(ISet<HumorEffect> humorEffects);
     }
 
     /// <summary>
@@ -150,7 +155,7 @@ namespace Dev.ComradeVanti.GGJ24
         /// have a random appearance. This does not initialize the person
         /// in any other way.
         /// </summary>
-        public GameObject SpawnPerson(Vector3 position);
+        public LivePerson SpawnPerson(Vector3 position);
     }
 
     /// <summary>
