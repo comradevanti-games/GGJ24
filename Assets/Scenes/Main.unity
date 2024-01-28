@@ -1693,7 +1693,7 @@ MonoBehaviour:
   propSelectionPrefab: {fileID: 3822667899170503291, guid: e8b2f7dbe1201ae4fad2623b7f12a144,
     type: 3}
   selectionArrow: {fileID: 2041946342}
-  arrowOffset: 5
+  arrowOffset: 3.5
 --- !u!1 &1989128461
 GameObject:
   m_ObjectHideFlags: 0
