@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
@@ -15,6 +16,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         private IPersonSpawner personSpawner = null!;
         private ICrowd currentCrowd = null!;
+        private float currentTotalHahaValue;
         private readonly IList<LivePerson> livePeople = new List<LivePerson>();
 
         private IEnumerable<Vector3> CalculatePeoplePositions(int personCount)
@@ -70,6 +72,11 @@ namespace Dev.ComradeVanti.GGJ24
         {
             personSpawner = Singletons.Require<IPersonSpawner>();
             Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
+            Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
+            {
+                if (args.NewPhase == PlayerPhase.Performance)
+                    currentTotalHahaValue = 0;
+            };
         }
 
         public void Register(ISet<HumorEffect> humorEffects)
@@ -83,6 +90,8 @@ namespace Dev.ComradeVanti.GGJ24
                     HahaScoring.HahaValueForPerson(person, effect));
 
                 livePerson.SetHahaScore(scoreValue);
+
+                currentTotalHahaValue += scoreValue;
             }
         }
     }
