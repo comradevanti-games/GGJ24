@@ -10,6 +10,7 @@ namespace Dev.ComradeVanti.GGJ24.Player
         #region Events
 
         public event Action<bool, Vector3> MovementStateChanged;
+        public event Action<bool> AutoMovementStateChanged;
 
         #endregion
 
@@ -19,8 +20,9 @@ namespace Dev.ComradeVanti.GGJ24.Player
         [SerializeField] private float movementSpeed;
 
         private bool isMoving;
+        private bool isAutomated;
 
-        #endregion
+#endregion
 
         #region Properties
 
@@ -36,7 +38,13 @@ namespace Dev.ComradeVanti.GGJ24.Player
             }
         }
 
-        public bool IsAutomated { get; set; }
+        public bool IsAutomated {
+            get => isAutomated;
+            set {
+                isAutomated = value;
+                AutoMovementStateChanged?.Invoke(IsAutomated);
+            }
+        }
 
         public Vector3 Position => charController.transform.position;
 
