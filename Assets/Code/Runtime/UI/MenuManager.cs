@@ -10,14 +10,13 @@ namespace Dev.ComradeVanti.GGJ24.UI {
 
 		public UnityEvent playButtonPressed;
 
-		public UnityEvent tutorialButtonPressed;
-
 #endregion
 
 #region Fields
 
 		[SerializeField] private Canvas menuCanvas;
 		[SerializeField] private CanvasGroup menuCanvasGroup;
+		[SerializeField] private GameObject tutorialInfoBox;
 
 #endregion
 
@@ -41,7 +40,7 @@ namespace Dev.ComradeVanti.GGJ24.UI {
 		}
 
 		public void OnTutorialButtonPressed() {
-			tutorialButtonPressed?.Invoke();
+			tutorialInfoBox.SetActive(!tutorialInfoBox.activeSelf);
 		}
 
 		private void HideCanvas() {
