@@ -13,7 +13,7 @@ namespace Dev.ComradeVanti.GGJ24
             var position = liveStageKeeper.TryGetPositionForSlot(slotIndex);
             if (position == null) throw new Exception("Slot index out of range!");
 
-            return Instantiate(prop.Prefab, position.Value, Quaternion.identity);
+            return Instantiate(prop.Prefab, position.Value, prop.Prefab.transform.rotation);
         }
 
 
