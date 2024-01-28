@@ -156,7 +156,7 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public record StoredInventoryChangedArgs(Inventory Inventory);
 
-        public record LiveInventoryChangedArgs(Inventory Inventory, int SelectedPropIndex);
+        public record LiveInventoryChangedArgs(Inventory Inventory, int? SelectedPropIndex);
 
 
         public event Action<StoredInventoryChangedArgs>? StoredInventoryChanged;

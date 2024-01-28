@@ -12,6 +12,7 @@ namespace Dev.ComradeVanti.GGJ24
         public event Action<IInventoryKeeper.LiveInventoryChangedArgs>? LiveInventoryChanged;
 
 
+        private int? liveSelectedPropIndex = null;
         private Inventory liveInventory = Inventory.Empty;
 
 
@@ -24,7 +25,8 @@ namespace Dev.ComradeVanti.GGJ24
             {
                 liveInventory = value;
                 LiveInventoryChanged?.Invoke(
-                    new IInventoryKeeper.LiveInventoryChangedArgs(LiveInventory, 0));
+                    new IInventoryKeeper.LiveInventoryChangedArgs(
+                        LiveInventory, liveSelectedPropIndex));
             }
         }
 
@@ -48,8 +50,15 @@ namespace Dev.ComradeVanti.GGJ24
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
             {
                 if (args.NewPhase == PlayerPhase.Setup)
+                {
+                    liveSelectedPropIndex = 0;
                     ResetLiveInventory();
+                }
+                else
+                    liveSelectedPropIndex = null;
             };
+
+            var inputHandler = FindFirstObjectByType<InputHandler>()!;
         }
     }
 }
