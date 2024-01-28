@@ -282,7 +282,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -423,7 +423,7 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
-  m_AllowMSAA: 1
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
-  m_StopNaN: 0
+  m_StopNaN: 1
   m_Dithering: 0
   m_ClearDepth: 1
   m_AllowXRRendering: 1
@@ -1914,6 +1914,11 @@ PrefabInstance:
       propertyPath: 'MusicResource.Array.data[1]'
       value: 
       objectReference: {fileID: 2140089383}
+    - target: {fileID: 7687723319559160708, guid: 22b7c40a4819df74ca0571eb03f0f49c,
+        type: 3}
+      propertyPath: m_text
+      value: LOLympics
+      objectReference: {fileID: 0}
     - target: {fileID: 8129556257677349698, guid: 22b7c40a4819df74ca0571eb03f0f49c,
         type: 3}
       propertyPath: m_AnchorMax.x
