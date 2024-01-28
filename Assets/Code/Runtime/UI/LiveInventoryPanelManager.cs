@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Dev.ComradeVanti.GGJ24
 {
-    public class InventoryUI : MonoBehaviour
+    public class LiveInventoryPanelManager : MonoBehaviour
     {
         #region Fields
 
