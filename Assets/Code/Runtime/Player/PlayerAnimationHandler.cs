@@ -23,7 +23,18 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 			playerMovement.MovementStateChanged += OnPlayerMovementStateChanged;
 		}
 
-		private void OnPlayerMovementStateChanged(bool isMoving) {
+		private void OnPlayerMovementStateChanged(bool isMoving, Vector3 movementDirection) {
+
+			if (movementDirection.x > 0) {
+				transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+			}
+			else if (movementDirection.x < 0) {
+				transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+			}
+			else {
+				transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+			}
+
 			playerAnimator.SetBool(IsMoving, isMoving);
 		}
 
