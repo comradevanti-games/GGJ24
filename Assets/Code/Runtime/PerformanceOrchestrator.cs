@@ -39,7 +39,10 @@ namespace Dev.ComradeVanti.GGJ24
             var interactables = prop!.GetComponents<IPropInteractable>();
             foreach (var interactable in interactables)
             {
-                var interaction = interactable.TryInteraction(state);
+                var currentPlayerSlot =
+                    liveStageKeeper.TryGetSlotFor(playerMover.Position.x)!.Value;
+
+                var interaction = interactable.TryInteraction(currentPlayerSlot, state);
                 if (interaction == null) continue;
 
                 state = interaction.NewPerformanceState;

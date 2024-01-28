@@ -183,6 +183,6 @@ namespace Dev.ComradeVanti.GGJ24
 
     public interface IPropInteractable
     {
-        public PropInteraction? TryInteraction(PerformanceState performanceState);
+        public PropInteraction? TryInteraction(int currentSlotIndex, PerformanceState performanceState);
     }
 }
