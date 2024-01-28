@@ -2,12 +2,13 @@
 
 using System;
 using System.Linq;
+using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Dev.ComradeVanti.GGJ24
 {
-    public class InventoryUI : MonoBehaviour
+    public class LiveInventoryPanelManager : MonoBehaviour
     {
         #region Fields
 
@@ -18,7 +19,6 @@ namespace Dev.ComradeVanti.GGJ24
             new GameObject[Inventory.MaxItemCount];
 
         #endregion
-
 
         #region Methods
 
@@ -32,9 +32,9 @@ namespace Dev.ComradeVanti.GGJ24
             {
                 var prop = inventory.Props.ElementAtOrDefault(index);
                 var item = items[index];
-                
-                item.SetActive(prop!= null);
-                
+
+                item.SetActive(prop != null);
+
                 if (prop == null) continue;
                 item.GetComponent<Image>().sprite = prop.Thumbnail;
             }
@@ -46,11 +46,19 @@ namespace Dev.ComradeVanti.GGJ24
                 items[i] = Instantiate(propUIPrefab, parentTransform);
         }
 
+        private void UpdateVisibilityForPhase(PlayerPhase phase)
+        {
+            var visible = phase is PlayerPhase.PropSelection or PlayerPhase.Setup;
+            gameObject.SetActive(visible);
+        }
+
         private void Awake()
         {
             SpawnItems();
             Singletons.Require<IInventoryKeeper>()
                       .LiveInventoryChanged += args => Display(args.Inventory);
+            Singletons.Require<IPhaseKeeper>()
+                      .PhaseChanged += args => UpdateVisibilityForPhase(args.NewPhase);
         }
 
         #endregion
