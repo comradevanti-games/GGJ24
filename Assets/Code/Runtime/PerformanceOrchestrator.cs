@@ -10,7 +10,7 @@ using UnityEngine.Animations;
 
 namespace Dev.ComradeVanti.GGJ24
 {
-    public class PerformanceOrchestrator : MonoBehaviour
+    public class PerformanceOrchestrator : MonoBehaviour, IPerformanceOrchestrator
     {
         private bool isPaused;
         private Movement playerMover = null!;
