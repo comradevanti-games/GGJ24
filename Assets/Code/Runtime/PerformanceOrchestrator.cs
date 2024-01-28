@@ -20,7 +20,16 @@ namespace Dev.ComradeVanti.GGJ24
 
         private PerformanceState ProgressPerformance(PerformanceState state)
         {
-            return state;
+            var targetPlayerPosition =
+                liveStageKeeper.TryGetPositionForSlot(state.TargetSlot);
+            var playerHasReachedTarget = Vector3.Distance(
+                targetPlayerPosition!.Value,
+                playerMover.Position) < 0.05f;
+            if (!playerHasReachedTarget) return state;
+
+            if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
+
+            return state with {TargetSlot = state.TargetSlot + 1};
         }
 
         private void ApplyState(PerformanceState state)
@@ -33,8 +42,17 @@ namespace Dev.ComradeVanti.GGJ24
             playerMover.To(targetPlayerPosition.Value);
         }
 
+        private void PrepareForPerformance()
+        {
+            var firstSlotPosition = liveStageKeeper.TryGetPositionForSlot(0);
+            var initialPosition = firstSlotPosition! - Vector3.right * 10;
+            playerMover.ToInstantaneous(initialPosition!.Value);
+        }
+
         private async void Perform(CancellationToken ct)
         {
+            PrepareForPerformance();
+
             var currentState = PerformanceState.initial;
             ApplyState(currentState);
 
@@ -57,7 +75,10 @@ namespace Dev.ComradeVanti.GGJ24
         private void StartPerformance()
         {
             performanceCancellationTokenSource = new CancellationTokenSource();
-            Perform(performanceCancellationTokenSource.Token);
+            var merged = CancellationTokenSource.CreateLinkedTokenSource(
+                performanceCancellationTokenSource.Token,
+                destroyCancellationToken);
+            Perform(merged.Token);
         }
 
         private void StopPerformance()
