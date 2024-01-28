@@ -7,6 +7,8 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 #region Constants
 
 		private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+		private static readonly int IsAirborne = Animator.StringToHash("IsAirborne");
+		private static readonly int Slipped = Animator.StringToHash("Slipped");
 
 #endregion
 
@@ -36,6 +38,12 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 			}
 
 			playerAnimator.SetBool(IsMoving, isMoving);
+		}
+
+		private void OnPlayerPerformanceStateChanged() {
+			
+			
+			
 		}
 
 		private void OnDisable() {
