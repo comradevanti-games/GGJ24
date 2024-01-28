@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Dev.ComradeVanti.GGJ24
 {
@@ -19,6 +20,11 @@ namespace Dev.ComradeVanti.GGJ24
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
 
+        public bool IsDoingProgressStoppingAnimation { get; set; }
+
+        private bool ShouldProgressPerformance =>
+            !isPaused && !IsDoingProgressStoppingAnimation;
+
 
         private PerformanceState ProgressPerformance(PerformanceState state)
         {
@@ -31,14 +37,14 @@ namespace Dev.ComradeVanti.GGJ24
 
             // When reaching target we stop falling
             state = state with {IsInAir = false};
-            
+
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
 
             var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
 
             state = state with {TargetSlot = state.TargetSlot + 1};
             if (!prop) return state;
-            
+
             var interactables = prop!.GetComponents<IPropInteractable>();
             foreach (var interactable in interactables)
             {
@@ -81,7 +87,7 @@ namespace Dev.ComradeVanti.GGJ24
 
             while (!ct.IsCancellationRequested)
             {
-                if (!isPaused)
+                if (ShouldProgressPerformance)
                 {
                     var newState = ProgressPerformance(currentState);
                     if (newState != currentState)
