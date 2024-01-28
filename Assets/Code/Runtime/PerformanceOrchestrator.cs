@@ -14,6 +14,7 @@ namespace Dev.ComradeVanti.GGJ24
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
+        private PlayerAnimationHandler playerAnimationHandler = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
@@ -55,6 +56,7 @@ namespace Dev.ComradeVanti.GGJ24
                 throw new Exception("Player tried to move to slot out of stage!");
 
             playerMover.To(targetPlayerPosition.Value);
+            playerAnimationHandler.SetPerformanceState(state);
         }
 
         private void PrepareForPerformance()
@@ -142,6 +144,7 @@ namespace Dev.ComradeVanti.GGJ24
         {
             playerMover = FindFirstObjectByType<Movement>()!;
             liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
+            playerAnimationHandler = FindFirstObjectByType<PlayerAnimationHandler>()!;
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }
