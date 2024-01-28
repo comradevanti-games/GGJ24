@@ -24,7 +24,7 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public Vector3? TryGetPositionForSlot(int slotIndex) =>
-            firstSlotTransform.position + stageDirection * UnitsPerSlot;
+            firstSlotTransform.position + stageDirection * UnitsPerSlot * slotIndex;
 
         public int? TryGetSlotFor(float x)
         {
