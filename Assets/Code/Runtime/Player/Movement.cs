@@ -38,6 +38,8 @@ namespace Dev.ComradeVanti.GGJ24.Player
 
         public bool IsAutomated { get; set; }
 
+        public Vector3 Position => charController.transform.position;
+
         #endregion
 
         #region Methods
@@ -95,10 +97,14 @@ namespace Dev.ComradeVanti.GGJ24.Player
         {
             IsAutomated = true;
 
-            while (Vector3.Distance(targetPoint, transform.position) > 0.5f)
+            while (Vector3.Distance(targetPoint, Position) > float.Epsilon)
             {
-                Vector3 dir = (targetPoint - transform.position).normalized;
-                charController.Move(dir * (movementSpeed * Time.fixedDeltaTime));
+                var nextPosition = Vector3.MoveTowards(
+                    Position, targetPoint,
+                    movementSpeed * Time.fixedDeltaTime);
+                var delta = nextPosition - Position;
+                charController.Move(delta);
+
                 yield return new WaitForFixedUpdate();
             }
 
