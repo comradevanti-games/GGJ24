@@ -44,6 +44,17 @@ namespace Dev.ComradeVanti.GGJ24
             ResetLiveInventory();
         }
 
+        private void TryChangeSelectedInventoryItem(int changeDirection)
+        {
+            if (changeDirection == 0) return;
+            if (liveSelectedPropIndex == null) return;
+
+            liveSelectedPropIndex = (int) Mathf.Repeat(
+                liveSelectedPropIndex.Value - changeDirection, LiveInventory.Props.Count);
+            LiveInventoryChanged?.Invoke(
+                new IInventoryKeeper.LiveInventoryChangedArgs(
+                    LiveInventory, liveSelectedPropIndex));
+        }
 
         private void Awake()
         {
@@ -59,6 +70,7 @@ namespace Dev.ComradeVanti.GGJ24
             };
 
             var inputHandler = FindFirstObjectByType<InputHandler>()!;
+            inputHandler.SetupInventoryChoosingInputPerformed += TryChangeSelectedInventoryItem;
         }
     }
 }
