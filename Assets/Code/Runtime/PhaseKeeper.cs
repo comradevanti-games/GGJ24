@@ -59,6 +59,11 @@ namespace Dev.ComradeVanti.GGJ24
             TrySwitchPhase(PlayerPhase.PropSelection);
         }
 
+        private void Start()
+        {
+            PhaseChanged?.Invoke(new IPhaseKeeper.PhaseChangedArgs(currentPhase));
+        }
+
         private void Awake()
         {
             Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
