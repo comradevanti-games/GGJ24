@@ -22,5 +22,8 @@ namespace Dev.ComradeVanti.GGJ24
 
         public static void Reset() =>
             Set(0);
+
+        public static void Increment() =>
+            Set(Get() + 1);
     }
 }
