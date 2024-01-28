@@ -243,6 +243,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 00017b41-ae90-4d3a-8270-10d7be7afbac
     m_ActionName: 'PropSelection/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnSetupChoosingInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 03d384c9-076f-4972-95df-cb7a38b9671e
+    m_ActionName: 'Setup/Choose[/Keyboard/w,/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Menu

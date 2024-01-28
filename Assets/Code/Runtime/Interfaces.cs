@@ -154,16 +154,16 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IInventoryKeeper
     {
-        public record InventoryChangedArgs(Inventory Inventory);
+        public record StoredInventoryChangedArgs(Inventory Inventory);
+
+        public record LiveInventoryChangedArgs(Inventory Inventory, int SelectedPropIndex);
 
 
-        public event Action<InventoryChangedArgs>? StoredInventoryChanged;
-        public event Action<InventoryChangedArgs>? LiveInventoryChanged;
+        public event Action<StoredInventoryChangedArgs>? StoredInventoryChanged;
+        public event Action<LiveInventoryChangedArgs>? LiveInventoryChanged;
 
 
         public Inventory StoredInventory { get; }
-
-        public Inventory LiveInventory { get; }
 
 
         /// <param name="updateF">An update functions. This function
@@ -177,5 +177,4 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public PropInteraction? TryInteraction(PerformanceState performanceState);
     }
-
 }

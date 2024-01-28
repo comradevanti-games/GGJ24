@@ -118,3 +118,5 @@ MonoBehaviour:
   propUIPrefab: {fileID: 114320470354710240, guid: 1dec3c3a5cd14614e9a25df55d4cca5c,
     type: 3}
   parentTransform: {fileID: 6929585155273630487}
+  highlightedColor: {r: 1, g: 1, b: 1, a: 1}
+  regularColor: {r: 0.4056604, g: 0.4056604, b: 0.4056604, a: 1}
