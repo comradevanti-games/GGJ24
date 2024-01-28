@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24 {
@@ -8,12 +6,15 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 		[SerializeField] private GameObject personHat;
 		[SerializeField] private GameObject hair;
-		[SerializeField] private Animation animationKeeper;
+		[SerializeField] private Animator animationController;
+		private static readonly int Idle = Animator.StringToHash("Idle");
+		private static readonly int Clap = Animator.StringToHash("Clap");
+		private static readonly int Laugh = Animator.StringToHash("Laugh");
 
 		public void EnableHat() {
 
 			float choice = Random.Range(0f, 1f);
-			personHat.SetActive(choice > 0.5f ? true : false);
+			personHat.SetActive(choice > 0.5f);
 
 		}
 
@@ -26,7 +27,21 @@ namespace Dev.ComradeVanti.GGJ24 {
 
 		}
 
-		public void SetHahaScore(float score) { }
+		public void SetHahaScore(float score) {
+
+			if (score < 1) {
+				animationController.SetTrigger(Idle);
+			}
+
+			if (score is >= 1 and < 2) {
+				animationController.SetTrigger(Clap);
+			}
+
+			if (score >= 2) {
+				animationController.SetTrigger(Laugh);
+			}
+
+		}
 
 	}
 
