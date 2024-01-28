@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftCurtainTransform: {fileID: 0}
   rightCurtainTransform: {fileID: 0}
-  closeTime: 0.25
+  closeTime: 1
   closedScale: 390
   openScale: 100
+  initialClosedness: 1

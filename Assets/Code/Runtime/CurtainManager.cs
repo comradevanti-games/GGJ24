@@ -1,5 +1,6 @@
 ﻿#nullable enable
 
+using System;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Dev.ComradeVanti.GGJ24
         [SerializeField] private float closeTime;
         [SerializeField] private float closedScale;
         [SerializeField] private float openScale;
+        [SerializeField] private float initialClosedness;
 
         private float currentClosedness;
         private float targetClosedness;
@@ -50,6 +52,12 @@ namespace Dev.ComradeVanti.GGJ24
             var shouldCurtainsBeClosed =
                 phase is PlayerPhase.Menu or PlayerPhase.Idle;
             targetClosedness = shouldCurtainsBeClosed ? 1 : 0;
+        }
+
+        private void Start()
+        {
+            currentClosedness = initialClosedness;
+            targetClosedness = initialClosedness;
         }
 
         private void Awake()
