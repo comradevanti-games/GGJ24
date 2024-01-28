@@ -15,6 +15,7 @@ namespace Dev.ComradeVanti.GGJ24 {
 		public event Action? PropSelectionInputPerformed;
 		public event Action? PropSelectionCompleteInputPerformed;
 		public event Action<Vector2>? PropChoosingInputPerformed;
+		public event Action<int>? SetupInventoryChoosingInputPerformed;
 		public event Action? SetupCompleteInputPerformed;
 		public event Action? PerformanceStartInputPerformed;
 		public event Action? PauseInputPerformed;
@@ -81,6 +82,14 @@ namespace Dev.ComradeVanti.GGJ24 {
 			if (ctx.canceled) {
 				PropSelectionCompleteInputPerformed?.Invoke();
 			}
+		}
+
+		public void OnSetupChoosingInputReceived(InputAction.CallbackContext ctx) {
+
+			if (ctx.performed) {
+				SetupInventoryChoosingInputPerformed?.Invoke((int)ctx.ReadValue<Vector2>().y);
+			}
+
 		}
 
 		public void OnSetupInteractionInputReceived(InputAction.CallbackContext ctx) {

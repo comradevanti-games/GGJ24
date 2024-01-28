@@ -14,6 +14,8 @@ namespace Dev.ComradeVanti.GGJ24
 
         [SerializeField] private GameObject propUIPrefab = null!;
         [SerializeField] private Transform parentTransform = null!;
+        [SerializeField] private Color highlightedColor = Color.white;
+        [SerializeField] private Color regularColor = Color.white;
 
         private readonly GameObject[] items =
             new GameObject[Inventory.MaxItemCount];
@@ -22,11 +24,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         #region Methods
 
-        private void AddPropDisplay(IProp prop, int index)
-        {
-        }
-
-        private void Display(Inventory inventory)
+        private void Display(Inventory inventory, int? selectedIndex)
         {
             for (var index = 0; index < Inventory.MaxItemCount; index++)
             {
@@ -34,9 +32,13 @@ namespace Dev.ComradeVanti.GGJ24
                 var item = items[index];
 
                 item.SetActive(prop != null);
-
                 if (prop == null) continue;
-                item.GetComponent<Image>().sprite = prop.Thumbnail;
+
+                var isSelected = selectedIndex == index;
+                var image = item.GetComponent<Image>();
+
+                image.color = isSelected ? highlightedColor : regularColor;
+                image.sprite = prop.Thumbnail;
             }
         }
 
@@ -55,10 +57,10 @@ namespace Dev.ComradeVanti.GGJ24
         private void Awake()
         {
             SpawnItems();
-            Singletons.Require<IInventoryKeeper>()
-                      .LiveInventoryChanged += args => Display(args.Inventory);
-            Singletons.Require<IPhaseKeeper>()
-                      .PhaseChanged += args => UpdateVisibilityForPhase(args.NewPhase);
+            Singletons.Require<IInventoryKeeper>().LiveInventoryChanged +=
+                args => Display(args.Inventory, args.SelectedPropIndex);
+            Singletons.Require<IPhaseKeeper>().PhaseChanged +=
+                args => UpdateVisibilityForPhase(args.NewPhase);
         }
 
         #endregion

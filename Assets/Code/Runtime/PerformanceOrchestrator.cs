@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Dev.ComradeVanti.GGJ24
 {
@@ -14,10 +15,15 @@ namespace Dev.ComradeVanti.GGJ24
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
-        private IPlayerStateKeeper playerStateKeeper = null!;
+        private PlayerAnimationHandler playerAnimationHandler = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
+
+        public bool IsDoingProgressStoppingAnimation { get; set; }
+
+        private bool ShouldProgressPerformance =>
+            !isPaused && !IsDoingProgressStoppingAnimation;
 
 
         private PerformanceState ProgressPerformance(PerformanceState state)
@@ -29,24 +35,29 @@ namespace Dev.ComradeVanti.GGJ24
                 playerMover.Position) < 0.05f;
             if (!playerHasReachedTarget) return state;
 
+            // When reaching target we stop falling
+            state = state with {IsInAir = false};
+
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
 
             var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
 
-            var nextTarget = state.TargetSlot + 1;
-            if (!prop)
-                return state with {TargetSlot = nextTarget};
+            state = state with {TargetSlot = state.TargetSlot + 1};
+            if (!prop) return state;
 
             var interactables = prop!.GetComponents<IPropInteractable>();
             foreach (var interactable in interactables)
             {
-                var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
+                var currentPlayerSlot =
+                    liveStageKeeper.TryGetSlotFor(playerMover.Position.x)!.Value;
+
+                var interaction = interactable.TryInteraction(currentPlayerSlot, state);
                 if (interaction == null) continue;
 
-                playerStateKeeper.PlayerState = interaction.NewPlayerState;
+                state = interaction.NewPerformanceState;
             }
 
-            return state with {TargetSlot = nextTarget};
+            return state;
         }
 
         private void ApplyState(PerformanceState state)
@@ -57,6 +68,7 @@ namespace Dev.ComradeVanti.GGJ24
                 throw new Exception("Player tried to move to slot out of stage!");
 
             playerMover.To(targetPlayerPosition.Value);
+            playerAnimationHandler.SetPerformanceState(state);
         }
 
         private void PrepareForPerformance()
@@ -75,7 +87,7 @@ namespace Dev.ComradeVanti.GGJ24
 
             while (!ct.IsCancellationRequested)
             {
-                if (!isPaused)
+                if (ShouldProgressPerformance)
                 {
                     var newState = ProgressPerformance(currentState);
                     if (newState != currentState)
@@ -144,7 +156,7 @@ namespace Dev.ComradeVanti.GGJ24
         {
             playerMover = FindFirstObjectByType<Movement>()!;
             liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
-            playerStateKeeper = Singletons.Require<IPlayerStateKeeper>();
+            playerAnimationHandler = FindFirstObjectByType<PlayerAnimationHandler>()!;
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }

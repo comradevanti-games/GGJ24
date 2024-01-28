@@ -65,7 +65,7 @@ namespace Dev.ComradeVanti.GGJ24.PropSelection {
 			for (int i = 0; i <= AllProps.Count - 1; i++) {
 
 				var newProp = Instantiate(propSelectionPrefab,
-					new Vector3((propSelectionOrigin.x + (6.5f * i)), propSelectionOrigin.y, propSelectionOrigin.z), Quaternion.identity,
+					new Vector3((propSelectionOrigin.x + (3f * i)), propSelectionOrigin.y, propSelectionOrigin.z), Quaternion.identity,
 					transform);
 
 				newProp.GetComponent<SpriteRenderer>().sprite = AllProps[i].Thumbnail;

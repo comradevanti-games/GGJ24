@@ -3,46 +3,48 @@
 using System.Linq;
 using UnityEngine;
 
-namespace Dev.ComradeVanti.GGJ24 {
+namespace Dev.ComradeVanti.GGJ24
+{
+    public class PlayerPropSetupHandler : MonoBehaviour
+    {
+        #region Properties
 
-	public class PlayerPropSetupHandler : MonoBehaviour {
+        private IStageKeeper StageKeeper { get; set; }
+        private ILiveStageKeeper LiveStageKeeper { get; set; }
+        private IInventoryKeeper InventoryKeeper { get; set; }
 
-#region Properties
+        #endregion
 
-		private IStageKeeper StageKeeper { get; set; }
-		private ILiveStageKeeper LiveStageKeeper { get; set; }
-		private IInventoryKeeper InventoryKeeper { get; set; }
+        #region Methods
 
-#endregion
+        private void Awake()
+        {
+            StageKeeper = Singletons.Require<IStageKeeper>();
+            LiveStageKeeper = Singletons.Require<LiveStageKeeper>();
+            InventoryKeeper = Singletons.Require<IInventoryKeeper>();
+            FindAnyObjectByType<InputHandler>().SetupInteractionInputPerformed += OnSetupInteractionReceived;
+        }
 
-#region Methods
+        private void OnSetupInteractionReceived(SetupInteractionEventArgs e)
+        {
+            int? currentPlayerSlotIndex = LiveStageKeeper.TryGetSlotFor(e.PlayerPosition.x);
 
-		private void Awake() {
-			StageKeeper = Singletons.Require<IStageKeeper>();
-			LiveStageKeeper = Singletons.Require<LiveStageKeeper>();
-			InventoryKeeper = Singletons.Require<IInventoryKeeper>();
-			FindAnyObjectByType<InputHandler>().SetupInteractionInputPerformed += OnSetupInteractionReceived;
-		}
+            if (currentPlayerSlotIndex == null || !StageKeeper.CanPlaceAt(currentPlayerSlotIndex.Value))
+                return;
 
-		private void OnSetupInteractionReceived(SetupInteractionEventArgs e) {
+            var propToBuild = InventoryKeeper.LiveSelectedProp;
+            if (propToBuild == null) return;
 
-			int? currentPlayerSlotIndex = LiveStageKeeper.TryGetSlotFor(e.PlayerPosition.x);
+            var newStage = Stage.TryPlaceProp(
+                StageKeeper.Stage, currentPlayerSlotIndex.Value, propToBuild);
+            InventoryKeeper.TryUseSelectedProp();
 
-			if (currentPlayerSlotIndex == null) {
-				return;
-			}
+            if (newStage != null)
+            {
+                StageKeeper.Stage = newStage;
+            }
+        }
 
-			Stage? newStage = Stage.TryPlaceProp(StageKeeper.Stage, currentPlayerSlotIndex.Value,
-				InventoryKeeper.StoredInventory.Props.First());
-
-			if (newStage != null) {
-				StageKeeper.Stage = newStage;
-			}
-
-		}
-
-#endregion
-
-	}
-
+        #endregion
+    }
 }

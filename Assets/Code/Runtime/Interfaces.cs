@@ -88,6 +88,10 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public Stage Stage { get; set; }
+
+
+        public bool CanPlaceAt(int slotIndex);
+
     }
 
     /// <summary>
@@ -154,16 +158,18 @@ namespace Dev.ComradeVanti.GGJ24
     /// </summary>
     public interface IInventoryKeeper
     {
-        public record InventoryChangedArgs(Inventory Inventory);
+        public record StoredInventoryChangedArgs(Inventory Inventory);
+
+        public record LiveInventoryChangedArgs(Inventory Inventory, int? SelectedPropIndex);
 
 
-        public event Action<InventoryChangedArgs>? StoredInventoryChanged;
-        public event Action<InventoryChangedArgs>? LiveInventoryChanged;
+        public event Action<StoredInventoryChangedArgs>? StoredInventoryChanged;
+        public event Action<LiveInventoryChangedArgs>? LiveInventoryChanged;
 
 
         public Inventory StoredInventory { get; }
 
-        public Inventory LiveInventory { get; }
+        public IProp? LiveSelectedProp { get; }
 
 
         /// <param name="updateF">An update functions. This function
@@ -171,15 +177,12 @@ namespace Dev.ComradeVanti.GGJ24
         /// The inventory that is returned from this function will
         /// be used as the new state.</param>
         public void ModifyStoredInventory(Func<Inventory, Inventory> updateF);
+
+        public void TryUseSelectedProp();
     }
 
     public interface IPropInteractable
     {
-        public PropInteraction? TryInteraction(PlayerState playerState);
-    }
-
-    public interface IPlayerStateKeeper
-    {
-        public PlayerState PlayerState { get; set; }
+        public PropInteraction? TryInteraction(int currentSlotIndex, PerformanceState performanceState);
     }
 }
