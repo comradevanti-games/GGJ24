@@ -1,6 +1,7 @@
 ﻿#nullable enable
 
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
@@ -13,6 +14,7 @@ namespace Dev.ComradeVanti.GGJ24
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
+        private IPlayerStateKeeper playerStateKeeper = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
@@ -29,7 +31,22 @@ namespace Dev.ComradeVanti.GGJ24
 
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
 
-            return state with {TargetSlot = state.TargetSlot + 1};
+            var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
+
+            var nextTarget = state.TargetSlot + 1;
+            if (!prop)
+                return state with {TargetSlot = nextTarget};
+
+            var interactables = prop!.GetComponents<IPropInteractable>();
+            foreach (var interactable in interactables)
+            {
+                var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
+                if (interaction == null) continue;
+
+                playerStateKeeper.PlayerState = interaction.NewPlayerState;
+            }
+
+            return state with {TargetSlot = nextTarget};
         }
 
         private void ApplyState(PerformanceState state)
@@ -127,6 +144,7 @@ namespace Dev.ComradeVanti.GGJ24
         {
             playerMover = FindFirstObjectByType<Movement>()!;
             liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
+            playerStateKeeper = Singletons.Require<IPlayerStateKeeper>();
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }
