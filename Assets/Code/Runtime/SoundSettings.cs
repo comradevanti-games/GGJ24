@@ -11,6 +11,7 @@ namespace Dev.ComradeVanti.GGJ24
     {
         public AudioMixer mixer;
         public AudioSource[] MusicResource;
+        public AudioClip[] OneShots;
         public void SetLevel(float sliderValue)
         {
             mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue)*20 );
