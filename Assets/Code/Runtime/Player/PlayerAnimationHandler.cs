@@ -1,59 +1,60 @@
+using System;
 using UnityEngine;
 
-namespace Dev.ComradeVanti.GGJ24.Player
-{
-    public class PlayerAnimationHandler : MonoBehaviour
-    {
-        #region Constants
+namespace Dev.ComradeVanti.GGJ24.Player {
 
-        private static readonly int IsMoving = Animator.StringToHash("IsMoving");
-        private static readonly int IsAirborne = Animator.StringToHash("IsAirborne");
-        private static readonly int Slipped = Animator.StringToHash("Slipped");
+	public class PlayerAnimationHandler : MonoBehaviour {
 
-        #endregion
+#region Constants
 
-        #region Fields
+		private static readonly int IsMoving = Animator.StringToHash("IsMoving");
+		private static readonly int IsAirborne = Animator.StringToHash("IsAirborne");
+		private static readonly int Slipped = Animator.StringToHash("Slipped");
 
-        [SerializeField] private Animator playerAnimator;
-        [SerializeField] private Movement playerMovement;
+#endregion
 
-        #endregion
+#region Fields
 
-        #region Methods
+		[SerializeField] private Animator playerAnimator;
+		[SerializeField] private Movement playerMovement;
 
-        private void Awake()
-        {
-            playerMovement.MovementStateChanged += OnPlayerMovementStateChanged;
-        }
+#endregion
 
-        private void OnPlayerMovementStateChanged(bool isMoving, Vector3 movementDirection)
-        {
-            if (movementDirection.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
-            }
-            else if (movementDirection.x < 0)
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
-            }
+#region Methods
 
-            playerAnimator.SetBool(IsMoving, isMoving);
-        }
+		private void Awake() {
+			playerMovement.MovementStateChanged += OnPlayerMovementStateChanged;
+			playerMovement.AutoMovementStateChanged += OnPlayerAutoMovementStateChanged;
+		}
 
-        public void SetPerformanceState(PerformanceState newState)
-        {
-            playerAnimator.SetBool(IsAirborne, newState.IsInAir);
-        }
+		private void OnPlayerAutoMovementStateChanged(bool isAutomated) {
+			playerAnimator.SetBool(IsMoving, isAutomated);
+		}
 
-        private void OnDisable()
-        {
-            playerMovement.MovementStateChanged -= OnPlayerMovementStateChanged;
-        }
+		private void OnPlayerMovementStateChanged(bool isMoving, Vector3 movementDirection) {
+			if (movementDirection.x > 0) {
+				transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+			}
+			else if (movementDirection.x < 0) {
+				transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
+			}
+			else {
+				transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+			}
 
-        #endregion
-    }
+			playerAnimator.SetBool(IsMoving, isMoving);
+		}
+
+		public void SetPerformanceState(PerformanceState newState) {
+			playerAnimator.SetBool(IsAirborne, newState.IsInAir);
+		}
+
+		private void OnDisable() {
+			playerMovement.MovementStateChanged -= OnPlayerMovementStateChanged;
+		}
+
+#endregion
+
+	}
+
 }
