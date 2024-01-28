@@ -11,22 +11,45 @@ namespace Dev.ComradeVanti.GGJ24
     public class PerformanceOrchestrator : MonoBehaviour
     {
         private bool isPaused;
-        private CancellationTokenSource? performanceCancellationTokenSource = null;
-
+        private Movement playerMover = null!;
+        private ILiveStageKeeper liveStageKeeper = null!;
+        private CancellationTokenSource? performanceCancellationTokenSource;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
 
 
-        private void ProgressPerformance()
+        private PerformanceState ProgressPerformance(PerformanceState state)
         {
-            throw new NotImplementedException();
+            return state;
+        }
+
+        private void ApplyState(PerformanceState state)
+        {
+            var targetPlayerPosition =
+                liveStageKeeper.TryGetPositionForSlot(state.TargetSlot);
+            if (targetPlayerPosition == null)
+                throw new Exception("Player tried to move to slot out of stage!");
+
+            playerMover.To(targetPlayerPosition.Value);
         }
 
         private async void Perform(CancellationToken ct)
         {
+            var currentState = PerformanceState.initial;
+            ApplyState(currentState);
+
             while (!ct.IsCancellationRequested)
             {
-                if (!isPaused) ProgressPerformance();
+                if (!isPaused)
+                {
+                    var newState = ProgressPerformance(currentState);
+                    if (newState != currentState)
+                    {
+                        currentState = newState;
+                        ApplyState(currentState);
+                    }
+                }
+
                 await Task.Yield();
             }
         }
@@ -81,6 +104,8 @@ namespace Dev.ComradeVanti.GGJ24
 
         private void Awake()
         {
+            playerMover = FindFirstObjectByType<Movement>()!;
+            liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }

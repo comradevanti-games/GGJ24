@@ -75,6 +75,7 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 		}
 
 		public void To(Vector3 targetPoint) {
+			StopAllCoroutines();
 			StartCoroutine(MoveCharacterTo(targetPoint));
 		}
 
