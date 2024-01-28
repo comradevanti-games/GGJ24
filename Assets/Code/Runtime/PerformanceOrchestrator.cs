@@ -1,23 +1,25 @@
 ﻿#nullable enable
 
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Dev.ComradeVanti.GGJ24.Player;
 using UnityEngine;
-using UnityEngine.Animations;
 
 namespace Dev.ComradeVanti.GGJ24
 {
     public class PerformanceOrchestrator : MonoBehaviour, IPerformanceOrchestrator
     {
+        public event Action? PerformanceCompleted;
+
+
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
         private PlayerAnimationHandler playerAnimationHandler = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
         private bool isDoingProgressStoppingAnimation;
+
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
 
@@ -103,6 +105,12 @@ namespace Dev.ComradeVanti.GGJ24
                     {
                         currentState = newState;
                         ApplyState(currentState);
+                    }
+
+                    if (newState.TargetSlot == Stage.SlotsPerStage - 1)
+                    {
+                        PerformanceCompleted?.Invoke();
+                        break;
                     }
                 }
 
