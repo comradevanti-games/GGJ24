@@ -73,6 +73,8 @@ namespace Dev.ComradeVanti.GGJ24
         private void Awake()
         {
             Singletons.Require<IActKeeper>().ActChanged += OnActChanged;
+            Singletons.Require<IPerformanceOrchestrator>().PerformanceCompleted +=
+                () => TrySwitchPhase(PlayerPhase.Eval);
 
             var inputHandler = FindAnyObjectByType<InputHandler>()!;
             inputHandler.PauseInputPerformed +=
