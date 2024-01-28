@@ -44,6 +44,7 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 
 			if (newState.IsInAir) {
 				playerAnimator.SetBool(IsAirborne, true);
+				
 			}
 
 		}
