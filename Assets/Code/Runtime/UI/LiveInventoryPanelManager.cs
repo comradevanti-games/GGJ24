@@ -24,7 +24,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         #region Methods
 
-        private void Display(Inventory inventory, int selectedIndex)
+        private void Display(Inventory inventory, int? selectedIndex)
         {
             for (var index = 0; index < Inventory.MaxItemCount; index++)
             {
