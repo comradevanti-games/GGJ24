@@ -29,10 +29,8 @@ namespace Dev.ComradeVanti.GGJ24
         {
             int? currentPlayerSlotIndex = LiveStageKeeper.TryGetSlotFor(e.PlayerPosition.x);
 
-            if (currentPlayerSlotIndex == null)
-            {
+            if (currentPlayerSlotIndex == null || !StageKeeper.CanPlaceAt(currentPlayerSlotIndex.Value))
                 return;
-            }
 
             var propToBuild = InventoryKeeper.LiveSelectedProp;
             if (propToBuild == null) return;
