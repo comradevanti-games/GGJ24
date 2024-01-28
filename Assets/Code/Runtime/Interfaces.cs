@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace Dev.ComradeVanti.GGJ24
 {
+    public interface IPerformanceOrchestrator
+    {
+    }
+
     /// <summary>
     /// Synonymous to "level". Contains information about the props and the
     /// crowd.
@@ -91,7 +95,6 @@ namespace Dev.ComradeVanti.GGJ24
 
 
         public bool CanPlaceAt(int slotIndex);
-
     }
 
     /// <summary>

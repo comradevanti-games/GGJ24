@@ -10,17 +10,26 @@ using UnityEngine.Animations;
 
 namespace Dev.ComradeVanti.GGJ24
 {
-    public class PerformanceOrchestrator : MonoBehaviour
+    public class PerformanceOrchestrator : MonoBehaviour, IPerformanceOrchestrator
     {
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
         private PlayerAnimationHandler playerAnimationHandler = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
+        private bool isDoingProgressStoppingAnimation;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
 
-        public bool IsDoingProgressStoppingAnimation { get; set; }
+        public bool IsDoingProgressStoppingAnimation
+        {
+            get => isDoingProgressStoppingAnimation;
+            set
+            {
+                playerMover.enabled = !value;
+                isDoingProgressStoppingAnimation = value;
+            }
+        }
 
         private bool ShouldProgressPerformance =>
             !isPaused && !IsDoingProgressStoppingAnimation;

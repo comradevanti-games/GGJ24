@@ -22,7 +22,7 @@ namespace Dev.ComradeVanti.GGJ24.Player
         private bool isMoving;
         private bool isAutomated;
 
-#endregion
+        #endregion
 
         #region Properties
 
@@ -38,9 +38,11 @@ namespace Dev.ComradeVanti.GGJ24.Player
             }
         }
 
-        public bool IsAutomated {
+        public bool IsAutomated
+        {
             get => isAutomated;
-            set {
+            set
+            {
                 isAutomated = value;
                 AutoMovementStateChanged?.Invoke(IsAutomated);
             }
@@ -108,11 +110,14 @@ namespace Dev.ComradeVanti.GGJ24.Player
 
             while (Vector3.Distance(targetPoint, Position) > float.Epsilon)
             {
-                var nextPosition = Vector3.MoveTowards(
-                    Position, targetPoint,
-                    movementSpeed * Time.fixedDeltaTime);
-                var delta = nextPosition - Position;
-                charController.Move(delta);
+                if (enabled)
+                {
+                    var nextPosition = Vector3.MoveTowards(
+                        Position, targetPoint,
+                        movementSpeed * Time.fixedDeltaTime);
+                    var delta = nextPosition - Position;
+                    charController.Move(delta);
+                }
 
                 yield return new WaitForFixedUpdate();
             }

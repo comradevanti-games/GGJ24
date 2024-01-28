@@ -24,6 +24,7 @@ namespace Dev.ComradeVanti.GGJ24
                 (PlayerPhase.PropSelection, PlayerPhase.Setup) => true,
                 (PlayerPhase.Setup, PlayerPhase.Performance) => true,
                 (PlayerPhase.Performance, PlayerPhase.Setup) => true,
+                (PlayerPhase.Performance, PlayerPhase.Eval) => true,
                 _ => false
             };
         }
@@ -32,7 +33,8 @@ namespace Dev.ComradeVanti.GGJ24
         {
             if (!CanDoSwitch(currentPhase, nextPhase)) return;
 
-            if (nextPhase == PlayerPhase.Setup) {
+            if (nextPhase == PlayerPhase.Setup)
+            {
                 if (Singletons.Require<IInventoryKeeper>().StoredInventory.Props.Count == 0) return;
             }
 
