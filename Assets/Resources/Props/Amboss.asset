@@ -10,8 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87240426253f4bddad9a97f0399ad687, type: 3}
-  m_Name: BananaPeel
+  m_Name: Amboss
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3780806726267151928, guid: 4dea9058d86e8544fb74f65cf0463e05, type: 3}
+  prefab: {fileID: 3780806726267151928, guid: b9a5b77115498e54cbde36faf02c8c70, type: 3}
   thumbnail: {fileID: 21300000, guid: 447eed39305ef4a48ae94d020eb59f2d, type: 3}
-  description: It's a banana peel. You know what it does
+  description: 'Rake hurts when stepped on.
+
+
+    Turns direction. After hit.'
