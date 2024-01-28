@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 6771888332630314928}
   - component: {fileID: 3672248896120019858}
   - component: {fileID: 7937312648170832982}
+  - component: {fileID: 2687082657100450657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -171,7 +172,19 @@ MonoBehaviour:
     m_ActionId: 1af0f2b0-0c6d-4ab9-8c06-f447d6f2d954
     m_ActionName: 'Setup/Complete[/Keyboard/enter]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPerformanceStartInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 5094a7d4-eea8-4bad-8ae1-3951a403f8c2
     m_ActionName: 'Performance/Start[/Keyboard/enter]'
   - m_PersistentCalls:
@@ -214,6 +227,58 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 93fa9445-ec27-4005-bd03-cac8b5400b6c
     m_ActionName: 'Performance/Pause[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPropChoosingInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0b791ca8-ee39-4ec4-a778-4faa6b0bf2ff
+    m_ActionName: 'PropSelection/Choose[/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPropSelectionInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: da0e280b-5003-484c-860b-d0a52a77eddd
+    m_ActionName: 'PropSelection/Select[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6771888332630314928}
+        m_TargetAssemblyTypeName: Dev.ComradeVanti.GGJ24.InputHandler, Dev.ComradeVanti.GGJ24
+        m_MethodName: OnPropSelectionCompleteInputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 81677376-22dd-4593-aed1-3c8e81a11a7c
+    m_ActionName: 'PropSelection/Complete[/Keyboard/enter]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 00017b41-ae90-4d3a-8270-10d7be7afbac
+    m_ActionName: 'PropSelection/Pause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Menu
@@ -286,6 +351,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerAnimator: {fileID: 6693411567200852154}
   playerMovement: {fileID: 3672248896120019858}
+--- !u!114 &2687082657100450657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542981062178905046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774fa42b3a51be149a36d78e081270d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &807649107509517411
 GameObject:
   m_ObjectHideFlags: 0
