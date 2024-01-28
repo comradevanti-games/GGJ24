@@ -31,16 +31,18 @@ namespace Dev.ComradeVanti.GGJ24
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
 
             var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
-            if (prop && prop!.TryGetComponent<IPropInteractable>(out var interactable))
+
+            var nextTarget = state.TargetSlot + 1;
+            if (!prop || !prop!.TryGetComponent<IPropInteractable>(out var interactable))
+                return state with {TargetSlot = nextTarget};
+
+            var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
+            if (interaction != null)
             {
-                var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
-                if (interaction != null)
-                {
-                    playerStateKeeper.PlayerState = interaction.NewPlayerState;
-                }
+                playerStateKeeper.PlayerState = interaction.NewPlayerState;
             }
 
-            return state with {TargetSlot = state.TargetSlot + 1};
+            return state with {TargetSlot = nextTarget};
         }
 
         private void ApplyState(PerformanceState state)
