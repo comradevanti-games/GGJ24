@@ -100,7 +100,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
@@ -397,19 +397,24 @@ ModelImporter:
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
+    - name: Reference.001
+      parentName: AudienceAnim(Clone)
+      position: {x: 0.0730867, y: 0.7908462, z: 0}
+      rotation: {x: 0.7071069, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 0.7900523, y: 0.7900523, z: 0.7900523}
     - name: Cap
       parentName: AudienceAnim(Clone)
-      position: {x: 3.444227, y: 1.1748475, z: 0.088881575}
+      position: {x: 0.009193897, y: 1.1801592, z: -0.12640543}
       rotation: {x: -0.17524336, y: -0.1498753, z: 0.027002458, w: 0.97267574}
       scale: {x: 1, y: 1, z: 0.9999999}
     - name: Armature
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0, z: 0}
+      position: {x: -0.016782284, y: 0.005311722, z: -0.21528701}
       rotation: {x: -0.000000037748947, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
       parentName: Armature
-      position: {x: -3.4182508, y: 0.41565788, z: 0.0682138}
+      position: {x: 0.016782276, y: 0.41034612, z: 0.22255486}
       rotation: {x: -2.0003554e-10, y: 2.1809744e-10, z: 0.0000000026497238, w: 1}
       scale: {x: 0.9999998, y: 1, z: 1}
     - name: mixamorig:Spine
@@ -471,17 +476,17 @@ ModelImporter:
     - name: mixamorig:LeftHandIndex1
       parentName: mixamorig:LeftHand
       position: {x: -0.0000000077486035, y: 0.038474567, z: -0.000000028610229}
-      rotation: {x: 0.053860445, y: -0.6786759, z: 0.050020963, w: 0.73075026}
+      rotation: {x: 0.053860128, y: -0.678676, z: 0.050020646, w: 0.73075026}
       scale: {x: 1.0000013, y: 0.9999996, z: 1.0000043}
     - name: mixamorig:LeftHandIndex2
       parentName: mixamorig:LeftHandIndex1
       position: {x: -0.000000076293944, y: 0.03019295, z: -0.000000047683713}
-      rotation: {x: 0.15076244, y: 0.0000007748602, z: -0.0035063317, w: 0.98856384}
+      rotation: {x: 0.1507632, y: 0.0000008046624, z: -0.003506369, w: 0.98856366}
       scale: {x: 1.0000035, y: 1.0000027, z: 1.0000087}
     - name: mixamorig:LeftHandIndex3
       parentName: mixamorig:LeftHandIndex2
       position: {x: -0.0003459382, y: 0.038195252, z: -0.014866042}
-      rotation: {x: 0.016415387, y: -0.000017958955, z: -0.00042817515, w: 0.9998652}
+      rotation: {x: 0.016415328, y: -0.000017842542, z: -0.00042820344, w: 0.99986523}
       scale: {x: 1.0000035, y: 1.0000037, z: 1.000004}
     - name: mixamorig:LeftHandIndex4
       parentName: mixamorig:LeftHandIndex3
@@ -517,17 +522,17 @@ ModelImporter:
     - name: mixamorig:RightHandIndex1
       parentName: mixamorig:RightHand
       position: {x: -0.000000038146972, y: 0.021619912, z: 0.000000009536743}
-      rotation: {x: 0.002934217, y: 0.9969621, z: -0.06168241, w: 0.047469847}
+      rotation: {x: 0.0029345446, y: 0.9969623, z: -0.061677843, w: 0.047469933}
       scale: {x: 1.0000046, y: 1.0000105, z: 0.99999887}
     - name: mixamorig:RightHandIndex2
       parentName: mixamorig:RightHandIndex1
       position: {x: -0.000000095367426, y: 0.03568077, z: 0.000000052452087}
-      rotation: {x: 0.1439677, y: 0.0000009462236, z: 0.004423497, w: 0.9895726}
+      rotation: {x: 0.14396606, y: 0.00000086426735, z: 0.004424557, w: 0.9895728}
       scale: {x: 1.000002, y: 1.0000018, z: 1.000005}
     - name: mixamorig:RightHandIndex3
       parentName: mixamorig:RightHandIndex2
       position: {x: 0.00053471565, y: 0.046508484, z: -0.017404718}
-      rotation: {x: 0.0071895104, y: -0.005353024, z: -0.014084162, w: 0.9998607}
+      rotation: {x: 0.0071876626, y: -0.00535296, z: -0.014083814, w: 0.99986064}
       scale: {x: 1.000002, y: 1.000004, z: 1.0000049}
     - name: mixamorig:RightHandIndex4
       parentName: mixamorig:RightHandIndex3
@@ -602,92 +607,92 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Head.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 1.211702, z: 0.060158648}
+      position: {x: -0.016782276, y: 1.2170137, z: -0.15512836}
       rotation: {x: 0.7071068, y: 2.0579585e-10, z: 0.0000000018521571, w: 0.7071067}
       scale: {x: 0.009999998, y: 0.009999998, z: 0.01}
     - name: Pants.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0.26973957, z: 0.007946902}
+      position: {x: -0.016782286, y: 0.2750513, z: -0.2073401}
       rotation: {x: 0.7071068, y: -0.0000000048970783, z: 0.000000009455532, w: 0.7071067}
       scale: {x: 0.007900523, y: 0.007900523, z: 0.007900523}
     - name: UpperBody.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0.71111524, z: -0.000000054656283}
+      position: {x: -0.016782286, y: 0.71642697, z: -0.21528707}
       rotation: {x: 0.7071068, y: 1.2720738e-18, z: 1.1801095e-18, w: 0.7071067}
       scale: {x: 0.01, y: 0.01, z: 0.01}
     - name: HandL.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0.71111524, z: -0.000000052756384}
+      position: {x: -0.016782321, y: 0.71642697, z: -0.21528707}
       rotation: {x: 0.7071068, y: -0.0000000014621712, z: -0.0000000015586374, w: 0.7071067}
       scale: {x: 0.01, y: 0.009999998, z: 0.01}
     - name: HandR.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0.71111524, z: -0.000000042362824}
+      position: {x: -0.01678227, y: 0.71642697, z: -0.21528703}
       rotation: {x: 0.7071068, y: 0.000000006832402, z: 0.000000008149488, w: 0.7071067}
       scale: {x: 0.009999998, y: 0.01, z: 0.01}
     - name: Shoes.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4182506, y: 0.26973954, z: 0.007946901}
+      position: {x: -0.016782286, y: 0.27505127, z: -0.2073401}
       rotation: {x: 0.7071068, y: 0.0000000043628594, z: 0.0000000063384915, w: 0.7071067}
       scale: {x: 0.009999998, y: 0.01, z: 0.01}
     - name: Eyes.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4170659, y: 1.191045, z: 0.059945047}
+      position: {x: -0.017966988, y: 1.1963568, z: -0.15534197}
       rotation: {x: 0.06779853, y: 0.035728365, z: -0.002429482, w: 0.9970562}
       scale: {x: 0.7900522, y: 0.7900522, z: 0.79005235}
     - name: PupilL.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.378543, y: 1.0641335, z: 0.54651344}
+      position: {x: -0.056489944, y: 1.0694453, z: 0.3312264}
       rotation: {x: 0.06444043, y: 0.035736334, z: -0.002309148, w: 0.9972788}
       scale: {x: 0.7900522, y: 0.7900523, z: 0.7900523}
     - name: MouthSad.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.442391, y: 0.79847944, z: 0.38079348}
+      position: {x: 0.0073575974, y: 0.80379117, z: 0.1655065}
       rotation: {x: 0.00000016566729, y: -0.63998395, z: 0.7683883, w: -0.000000425698}
       scale: {x: 1, y: 0.9999999, z: 0.9999999}
     - name: BrowR.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.6074853, y: 1.1355588, z: 0.43947968}
+      position: {x: 0.1724522, y: 1.1408706, z: 0.22419271}
       rotation: {x: 0.06779852, y: 0.035728358, z: -0.0024294811, w: 0.9970562}
       scale: {x: 0.9999998, y: 1, z: 0.99999994}
     - name: MouthShocked.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.442391, y: 0.78740424, z: 0.36381426}
+      position: {x: 0.0073575974, y: 0.79271597, z: 0.14852728}
       rotation: {x: 0.9369379, y: 0, z: -0, w: 0.34949586}
       scale: {x: 1, y: 0.9999999, z: 0.9999999}
     - name: MouthHappy.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.442391, y: 0.7768569, z: 0.3511358}
+      position: {x: 0.0073575974, y: 0.7821686, z: 0.13584878}
       rotation: {x: 0.043989494, y: -0.00000005297129, z: 0.00000032848953, w: 0.999032}
       scale: {x: 1, y: 0.9999999, z: 0.9999999}
     - name: PupilR.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.5163567, y: 1.076073, z: 0.54212475}
+      position: {x: 0.08132386, y: 1.0813849, z: 0.32683772}
       rotation: {x: 0.023003869, y: 0, z: -0, w: 0.9997354}
       scale: {x: 0.7900523, y: 0.79005235, z: 0.79005235}
     - name: BrowL.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.2925017, y: 1.1356765, z: 0.4606656}
+      position: {x: -0.14253163, y: 1.1409882, z: 0.24537858}
       rotation: {x: 0.06779852, y: 0.035728358, z: -0.0024294811, w: 0.9970562}
       scale: {x: 0.9999998, y: 1, z: 0.99999994}
     - name: Beard.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4423904, y: 0.86761755, z: 0.4673127}
+      position: {x: 0.007357359, y: 0.8729292, z: 0.25202563}
       rotation: {x: 0.19589692, y: 0, z: -0, w: 0.9806245}
       scale: {x: 0.033315055, y: 0.03331506, z: 0.03331506}
     - name: Beard2.001
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4405568, y: 0.8672522, z: 0.42048758}
+      position: {x: 0.00552392, y: 0.8725639, z: 0.2052006}
       rotation: {x: 0.2519616, y: -0.066072606, z: 0.2448999, w: 0.93390244}
       scale: {x: 1, y: 0.99999994, z: 1}
     - name: Hair.003
       parentName: AudienceAnim(Clone)
-      position: {x: 3.423251, y: 1.1877575, z: 0.048375543}
+      position: {x: -0.011781933, y: 1.1930692, z: -0.16691147}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hat.002
       parentName: AudienceAnim(Clone)
-      position: {x: 3.4833555, y: 1.9268649, z: 0.06015873}
+      position: {x: 0.048322678, y: 1.9321766, z: -0.15512829}
       rotation: {x: -2.093661e-25, y: -1.7781898e-16, z: -0.06095756, w: 0.9981404}
       scale: {x: 0.31275955, y: 0.31275955, z: 0.31275958}
     armTwist: 0.5
