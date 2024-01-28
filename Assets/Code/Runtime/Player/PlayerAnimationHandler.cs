@@ -41,10 +41,11 @@ namespace Dev.ComradeVanti.GGJ24.Player {
 		}
 
 		public void SetPerformanceState(PerformanceState newState) {
-			
-			
-			
-			
+
+			if (newState.IsInAir) {
+				playerAnimator.SetBool(IsAirborne, true);
+			}
+
 		}
 
 		private void OnDisable() {
