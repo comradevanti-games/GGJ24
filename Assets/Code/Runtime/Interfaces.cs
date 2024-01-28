@@ -103,6 +103,7 @@ namespace Dev.ComradeVanti.GGJ24
 
         public int? TryGetSlotFor(float x);
 
+        public GameObject? TryGetLivePropAtSlot(int slotIndex);
     }
 
     /// <summary>
@@ -175,5 +176,10 @@ namespace Dev.ComradeVanti.GGJ24
     public interface IPropInteractable
     {
         public PropInteraction? TryInteraction(PlayerState playerState);
+    }
+
+    public interface IPlayerStateKeeper
+    {
+        public PlayerState PlayerState { get; set; }
     }
 }

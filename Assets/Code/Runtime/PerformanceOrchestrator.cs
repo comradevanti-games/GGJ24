@@ -13,6 +13,7 @@ namespace Dev.ComradeVanti.GGJ24
         private bool isPaused;
         private Movement playerMover = null!;
         private ILiveStageKeeper liveStageKeeper = null!;
+        private IPlayerStateKeeper playerStateKeeper = null!;
         private CancellationTokenSource? performanceCancellationTokenSource;
 
         private bool IsPerforming => performanceCancellationTokenSource != null;
@@ -28,6 +29,16 @@ namespace Dev.ComradeVanti.GGJ24
             if (!playerHasReachedTarget) return state;
 
             if (state.TargetSlot >= Stage.SlotsPerStage - 1) return state;
+
+            var prop = liveStageKeeper.TryGetLivePropAtSlot(state.TargetSlot);
+            if (prop && prop!.TryGetComponent<IPropInteractable>(out var interactable))
+            {
+                var interaction = interactable.TryInteraction(playerStateKeeper.PlayerState);
+                if (interaction != null)
+                {
+                    playerStateKeeper.PlayerState = interaction.NewPlayerState;
+                }
+            }
 
             return state with {TargetSlot = state.TargetSlot + 1};
         }
@@ -127,6 +138,7 @@ namespace Dev.ComradeVanti.GGJ24
         {
             playerMover = FindFirstObjectByType<Movement>()!;
             liveStageKeeper = Singletons.Require<ILiveStageKeeper>();
+            playerStateKeeper = Singletons.Require<IPlayerStateKeeper>();
             Singletons.Require<IPhaseKeeper>().PhaseChanged += args =>
                 OnPhaseChanged(args.NewPhase);
         }
